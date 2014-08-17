@@ -1,0 +1,11 @@
+[ui]
+username = AJ <ajjai@tenmiles.com>
+merge = internal:merge
+[extensions]
+color =
+pager =
+
+[tortoisehg]
+authorcolor = True
+[pager]
+pager = LESS='FRX' less
