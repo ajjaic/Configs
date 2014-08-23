@@ -179,10 +179,13 @@ autocmd InsertLeave * set nocul
 " Do not show matching parenthesis
 autocmd VimEnter * NoMatchParen
 
-" Toggling folds
+" Toggle existing fold
 nnoremap <Leader>a za
+" Toggle existing folds recursively
 nnoremap <Leader>A zA
+" Open all folds
 nnoremap <Leader>R zR
+" Close all folds
 nnoremap <Leader>M zM
 
 " Search highlighted text
