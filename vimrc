@@ -239,19 +239,6 @@ let g:airline_section_c = ''
 let g:NERDCreateDefaultMappings=0
 map <leader>cc <plug>NERDCommenterToggle
 
-" Solarized colorscheme
-"colorscheme solarized
-"let g:solarized_termcolors=256
-"let g:solarized_bold = 1
-"let g:solarized_underline = 1
-"let g:solarized_italic = 1
-"set background=dark
-" EasyMotion color settings while using solarized
-"hi link EasyMotionTarget ErrorMsg
-"hi link EasyMotionShade  Comment
-"hi link EasyMotionTarget2First ErrorMsg
-"hi link EasyMotionTarget2Second ErrorMsg
-
 " Vim Bufferline
 "let g:bufferline_fname_mod = ':t'
 "let g:bufferline_echo = 0
