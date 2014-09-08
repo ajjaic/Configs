@@ -4,6 +4,7 @@ merge = internal:merge
 [extensions]
 color =
 pager =
+strip =
 
 [tortoisehg]
 authorcolor = True
