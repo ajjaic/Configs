@@ -97,29 +97,29 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 "dont continue comments when pushing o/O
 set formatoptions-=o
 
-"Enable mouse support in console
+"enable mouse support in console
 set mouse=a
 
-"Autoread files changed outside vim
+"autoread files changed outside vim
 set autoread
 
-set hidden "Allow buffers to exist in the background even if it is not in Window
+set hidden "allow buffers to exist in the background even if it is not in Window
 
-set showcmd "Display command in lower right corner
+set showcmd "display command in lower right corner
 set noshowmode
 
-set laststatus=2 " Use 2 lines for status bar
+set laststatus=2 "use 2 lines for status bar
 
-"Searching
-set ignorecase "Case insenstive while searching
-set smartcase  "Case sensitive if search pattern contains uppercase characters
-set hlsearch   "Highlight search words
-set incsearch  "Incremental searching
+"searching
+set ignorecase "case insenstive while searching
+set smartcase  "case sensitive if search pattern contains uppercase characters
+set hlsearch   "highlight search words
+set incsearch  "incremental searching
 
-"set clipboard=unnamedplus " Use the OS clipboard by default
+"set clipboard=unnamedplus "use the OS clipboard by default
 set clipboard=unnamed
 
-set nobackup "Do we need backups
+set nobackup "do we need backups
 set noswapfile
 set nowb
 
