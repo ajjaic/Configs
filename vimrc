@@ -3,20 +3,20 @@
 " goto ~/.vim/bundles/vimproc.vim
 " Run make
 
-" Necessary for lots of cool vim things
+"necessary for lots of cool vim things
 set nocompatible
 filetype off
 filetype plugin off
 filetype plugin indent off
 
-" Map leader
+"map leader
 let mapleader = ","
 
-" Vundle vim plugin manager
+"vundle vim plugin manager
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" My Bundles
+"my bundles
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'godlygeek/tabular'
@@ -30,7 +30,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
 
-" Trim trailing spaces
+"trim trailing spaces
 function! TrimTrailingWhitespace()
     execute "normal mz"
     %s/\s\+$//ge
@@ -39,17 +39,17 @@ endfunction
 
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
-    "Automatically reload vimrc when it is saved
+    "automatically reload vimrc when it is saved
     autocmd BufWritePost .vimrc source ~/.vimrc
-    "Remove any trailing whitespace in the file
+    "remove any trailing whitespace in the file
     autocmd BufWrite * :call TrimTrailingWhitespace()
-    "Jump to last position when opening file
+    "jump to last position when opening file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    " Do not show matching parenthesis
-    "autocmd VimEnter * NoMatchParen
+    "do not show matching parenthesis
+    autocmd VimEnter * NoMatchParen
 endif
 
-" General Settings
+"general Settings
 syntax enable
 syntax on
 filetype on
@@ -175,9 +175,6 @@ nnoremap ; J
 " Visually show when I enter and leave `insert` mode
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
-
-" Do not show matching parenthesis
-autocmd VimEnter * NoMatchParen
 
 " Toggle existing fold
 nnoremap <Leader>a za
