@@ -76,18 +76,18 @@ set nowrap
 "set colorcolumn=+1
 
 "indent settings
-set shiftwidth=4 "No of spaces for autoindent
+set shiftwidth=4 "no of spaces for autoindent
 set softtabstop=4
 "set tabstop=4
-set expandtab    " Expand tabs to spaces
+set expandtab    "expand tabs to spaces
 set autoindent
-set copyindent   " Copy previous indentation on autoindenting
-set shiftround   " Use multiple of shiftwidth when indenting
-set nojoinspaces " Don't convert spaces to tabs
-set smarttab     " Indent instead of tab at start of line
-"set linespace=0 " Sets linespace (px between lines)
+set copyindent   "copy previous indentation on autoindenting
+set shiftround   "use multiple of shiftwidth when indenting
+set nojoinspaces "don't convert spaces to tabs
+set smarttab     "indent instead of tab at start of line
+"set linespace=0 "sets linespace (px between lines)
 
-"Configure wild menu
+"configure wild menu
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.py[co],*.obj,*.bak
@@ -124,8 +124,8 @@ set noswapfile
 set nowb
 
 "vertical/horizontal scroll off settings
-set scrolloff=3     "Minimal number of lines to keep above and below cursor
-set sidescrolloff=3 "Minimal number of lines to keep to the left and right of cursor
+set scrolloff=3     "minimal number of lines to keep above and below cursor
+set sidescrolloff=3 "minimal number of lines to keep to the left and right of cursor
 set sidescroll=1
 "set scrolljump=5
 
