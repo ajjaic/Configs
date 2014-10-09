@@ -123,6 +123,9 @@ set nobackup "do we need backups
 set noswapfile
 set nowb
 
+"save folds on quit
+set foldmethod=marker
+
 "vertical/horizontal scroll off settings
 set scrolloff=3     "minimal number of lines to keep above and below cursor
 set sidescrolloff=3 "minimal number of lines to keep to the left and right of cursor
