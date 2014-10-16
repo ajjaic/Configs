@@ -134,6 +134,9 @@ set sidescrolloff=40 " Minimal number of lines to keep to the left and right of 
 set sidescroll=1
 "set scrolljump=5
 
+"fold method settingj
+set foldmethod=marker
+
 "Lower delay of escaping out of other modes
 set timeout timeoutlen=1000 ttimeoutlen=0
 
