@@ -187,6 +187,8 @@ nnoremap <Leader>A zA
 nnoremap <Leader>R zR
 " Close all folds
 nnoremap <Leader>M zM
+" Delete all folds
+nnoremap <Leader>E zE
 
 " Search highlighted text
 vnoremap / yq/p<CR>

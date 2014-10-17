@@ -134,7 +134,7 @@ set sidescrolloff=40 " Minimal number of lines to keep to the left and right of 
 set sidescroll=1
 "set scrolljump=5
 
-"fold method settingj
+"fold method setting
 set foldmethod=marker
 
 "Lower delay of escaping out of other modes
@@ -192,6 +192,8 @@ nnoremap <Leader>A zA
 nnoremap <Leader>R zR
 " Close all folds
 nnoremap <Leader>M zM
+" Delete all folds
+nnoremap <Leader>E zE
 
 " Search highlighted text
 vnoremap / yq/p<CR>:GhcModType<CR>
