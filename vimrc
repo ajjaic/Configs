@@ -135,62 +135,62 @@ set sidescroll=1
 "Lower delay of escaping out of other modes
 set timeout timeoutlen=1000 ttimeoutlen=0
 
-"Change color of line numbers
+"change color of line numbers
 highlight LineNr ctermfg=blue ctermbg=black
 
-" Horizontal scroll jump
+"horizontal scroll jump
 nnoremap L 10zl
 nnoremap H 10zh
 
-" indent and keep selection so that i can do it again
+"indent and keep selection so that i can do it again
 vnoremap < <gv
 vnoremap > >gv
 
-" Remap jk to escape from insert mode.
+"remap jk to escape from insert mode.
 inoremap jk <Esc>
 
-" Edit vimrc file
+"edit vimrc file
 nnoremap  <Leader>ev :e ~/.vimrc<CR>
 
-" Clear highlighted text
+"clear highlighted text
 nnoremap <leader>s :noh<CR>
 
-" Buffer settings
+"buffer settings
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
-" Page down and Page up
+"page down and Page up
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
 
-" Switch to previous edited buffer
+"switch to previous edited buffer
 nnoremap <C-b> :b#<CR>
 
-" Navigating the lines
+"navigating the lines
 nnoremap J 3j
 nnoremap K 3k
 vnoremap J 3j
 vnoremap K 3k
 
-" Join lines
+"join lines
 nnoremap ; J
 
-" Visually show when I enter and leave `insert` mode
+"visually show when I enter and leave `insert` mode
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
-" Toggle existing fold
+"toggle existing fold
 nnoremap <Leader>a za
-" Toggle existing folds recursively
+"toggle existing folds recursively
 nnoremap <Leader>A zA
-" Open all folds
+"open all folds
 nnoremap <Leader>R zR
-" Close all folds
+"close all folds
 nnoremap <Leader>M zM
-" Delete all folds
+"delete all folds
 nnoremap <Leader>E zE
 
-" Search highlighted text
+"search highlighted text
 vnoremap / yq/p<CR>
 
 """""""""""""
