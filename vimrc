@@ -175,6 +175,10 @@ vnoremap K 3k
 "join lines
 nnoremap ; J
 
+"navigate display lines
+nnoremap j gj
+nnoremap k gk
+
 "visually show when I enter and leave `insert` mode
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
