@@ -1,34 +1,49 @@
 " First install and run this -> git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" Run BundleUpdate
+" Run :PluginUpdate
 " goto ~/.vim/bundles/vimproc.vim
 " Run make
 
-"necessary for lots of cool vim things
+" necessary for lots of cool vim things
 set nocompatible
 filetype off
 filetype plugin off
 filetype plugin indent off
 
-"map leader
+" map leader
 let mapleader = ","
 
-"vundle vim plugin manager
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 
-"my bundles
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'godlygeek/tabular'
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/neomru.vim'
-Bundle 'thinca/vim-unite-history'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'bling/vim-airline'
+" Keep Plugin commands between vundle#begin/end.
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" plugins on GitHub repo
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'thinca/vim-unite-history'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'bling/vim-airline'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 "trim trailing spaces
 function! TrimTrailingWhitespace()
@@ -246,5 +261,5 @@ let g:NERDCreateDefaultMappings=0
 map <leader>cc <plug>NERDCommenterToggle
 
 " Vim Bufferline
-"let g:bufferline_fname_mod = ':t'
-"let g:bufferline_echo = 0
+let g:bufferline_fname_mod = ':t'
+let g:bufferline_echo = 0
