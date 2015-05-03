@@ -1,4 +1,4 @@
-" First install and run this -> git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" First install and run this -> git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " Run :PluginUpdate
 " goto ~/.vim/bundles/vimproc.vim
 " Run make
