@@ -1,41 +1,56 @@
 " First install and run this -> git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" Run BundleUpdate
+" Run :PluginUpdate
 " goto ~/.vim/bundles/vimproc.vim
 " Run make
 
-" Necessary for lots of cool vim things
+" necessary for lots of cool vim things
 set nocompatible
 filetype off
 filetype plugin off
 filetype plugin indent off
 
-" Map leader
+" map leader
 let mapleader = ","
 
-" Vundle vim plugin manager
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 
-" My Bundles
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'godlygeek/tabular'
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/neomru.vim'
-Bundle 'thinca/vim-unite-history'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-Bundle 'eagletmt/ghcmod-vim'
-Bundle 'eagletmt/neco-ghc'
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'travitch/hasksyn'
+" Keep Plugin commands between vundle#begin/end.
+call vundle#begin()
 
-" Trim trailing spaces
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" plugins on GitHub repo
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'thinca/vim-unite-history'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'travitch/hasksyn'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"trim trailing spaces
 function! TrimTrailingWhitespace()
     execute "normal mz"
     %s/\s\+$//ge
@@ -44,17 +59,17 @@ endfunction
 
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
-    "Automatically reload vimrc when it is saved
+    "automatically reload vimrc when it is saved
     autocmd BufWritePost .vimrc source ~/.vimrc
-    "Remove any trailing whitespace in the file
+    "remove any trailing whitespace in the file
     autocmd BufWrite * :call TrimTrailingWhitespace()
-    "Jump to last position when opening file
+    "jump to last position when opening file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    " Do not show matching parenthesis
+    "do not show matching parenthesis
     autocmd VimEnter * NoMatchParen
 endif
 
-" General Settings
+"general Settings
 syntax enable
 syntax on
 filetype on
@@ -81,18 +96,18 @@ set nowrap
 "set colorcolumn=+1
 
 "indent settings
-set shiftwidth=4 "No of spaces for autoindent
+set shiftwidth=4 "no of spaces for autoindent
 set softtabstop=4
 "set tabstop=4
-set expandtab " Expand tabs to spaces
+set expandtab    "expand tabs to spaces
 set autoindent
-set copyindent " Copy previous indentation on autoindenting
-set shiftround " Use multiple of shiftwidth when indenting
-set nojoinspaces "Dont convert spaces to tabs
-set smarttab "Indent instead of tab at start of line
-"set linespace=0 " Sets linespace (px between lines)
+set copyindent   "copy previous indentation on autoindenting
+set shiftround   "use multiple of shiftwidth when indenting
+set nojoinspaces "don't convert spaces to tabs
+set smarttab     "indent instead of tab at start of line
+"set linespace=0 "sets linespace (px between lines)
 
-"Configure wild menu
+"configure wild menu
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.py[co],*.obj,*.bak
@@ -102,101 +117,106 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 "dont continue comments when pushing o/O
 set formatoptions-=o
 
-"Enable mouse support in console
+"enable mouse support in console
 set mouse=a
 
-"Autoread files changed outside vim
+"autoread files changed outside vim
 set autoread
 
-set hidden "Allow buffers to exist in the background even if it is not in Window
+set hidden "allow buffers to exist in the background even if it is not in Window
 
-set showcmd "Display command in lower right corner
+set showcmd "display command in lower right corner
 set noshowmode
 
-set laststatus=2 " Use 2 lines for status bar
+set laststatus=2 "use 2 lines for status bar
 
-"Searching
-set ignorecase " Case insenstive while searching
-set smartcase  " Case sensitive if search pattern contains uppercase characters
-set hlsearch   " Highlight search words
-set incsearch  " Incremental searching
+"searching
+set ignorecase "case insenstive while searching
+set smartcase  "case sensitive if search pattern contains uppercase characters
+set hlsearch   "highlight search words
+set incsearch  "incremental searching
 
-"set clipboard=unnamedplus " Use the OS clipboard by default
+"set clipboard=unnamedplus "use the OS clipboard by default
 set clipboard=unnamed
 
-set nobackup " Do we need backups
+set nobackup "do we need backups
 set noswapfile
 set nowb
 
+"save folds on quit
+set foldmethod=marker
+
 "vertical/horizontal scroll off settings
-set scrolloff=20 " Minimal number of lines to keep above and below cursor
-set sidescrolloff=40 " Minimal number of lines to keep to the left and right of cursor
+set scrolloff=3     "minimal number of lines to keep above and below cursor
+set sidescrolloff=3 "minimal number of lines to keep to the left and right of cursor
 set sidescroll=1
 "set scrolljump=5
-
-"fold method setting
-set foldmethod=marker
 
 "Lower delay of escaping out of other modes
 set timeout timeoutlen=1000 ttimeoutlen=0
 
-"Change color of line numbers
+"change color of line numbers
 highlight LineNr ctermfg=blue ctermbg=black
 
-" Horizontal scroll jump
+"horizontal scroll jump
 nnoremap L 10zl
 nnoremap H 10zh
 
-" indent and keep selection so that i can do it again
+"indent and keep selection so that i can do it again
 vnoremap < <gv
 vnoremap > >gv
 
-" Remap jj to escape from insert mode.
+"remap jk to escape from insert mode.
 inoremap jk <Esc>
 
-" Edit vimrc file
+"edit vimrc file
 nnoremap  <Leader>ev :e ~/.vimrc<CR>
 
-" Clear highlighted text
+"clear highlighted text
 nnoremap <leader>s :noh<CR>
 
-" Buffer settings
+"buffer settings
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
-" Page up and Page down
+"page down and Page up
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
 
-" Switch to previous edited buffer
+"switch to previous edited buffer
 nnoremap <C-b> :b#<CR>
 
-" Navigating the lines
+"navigating the lines
 nnoremap J 3j
 nnoremap K 3k
 vnoremap J 3j
 vnoremap K 3k
 
-" Join lines
+"join lines
 nnoremap ; J
 
-" Visually show when I enter and leave `insert` mode
+"navigate display lines
+nnoremap j gj
+nnoremap k gk
+
+"visually show when I enter and leave `insert` mode
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
-" Toggle existing fold
+"toggle existing fold
 nnoremap <Leader>a za
-" Toggle existing folds recursively
+"toggle existing folds recursively
 nnoremap <Leader>A zA
-" Open all folds
+"open all folds
 nnoremap <Leader>R zR
-" Close all folds
+"close all folds
 nnoremap <Leader>M zM
-" Delete all folds
+"delete all folds
 nnoremap <Leader>E zE
 
-" Search highlighted text
-vnoremap / yq/p<CR>:GhcModType<CR>
+"search highlighted text
+vnoremap / yq/p<CR>
+
 """""""""""""
 "  PLUGINS  "
 """""""""""""
@@ -223,14 +243,14 @@ nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
 nnoremap <silent> <leader>uc :Unite -start-insert history/command<CR>
 nnoremap <silent> <leader>uy :Unite history/yank<CR>
 nnoremap <silent> <Leader>um :Unite -start-insert file_mru<CR>
-nnoremap <silent> <leader>uf :Unite history/search<CR>
-nnoremap <silent> <leader>ug :Unite grep:$buffers<CR>
+nnoremap <silent> <leader>us :Unite history/search<CR>
 nnoremap <silent> <leader>up :Unite grep:./*<CR>
+nnoremap <silent> <leader>ug :UniteWithCursorWord grep:./*<CR>
+nnoremap <silent> <leader>ub :Unite grep:$buffers<CR>
+nnoremap <silent> <leader>uw :UniteWithCursorWord grep:$buffers<CR>
+nnoremap <silent> <leader>uf :UniteWithCursorWord file_rec/async<CR>
 nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
 nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
-"nnoremap <silent> <leader>uf :UniteWithCursorWord file_rec/async<CR>
-"nnoremap <silent> <leader>ug :UniteWithCursorWord grep<CR>
-"nnoremap <silent> <leader>ul :Unite -input=\zs:: line<CR>
 
 " Tabularize
 cnoremap <leader>ta Tabularize
@@ -238,10 +258,16 @@ cnoremap <leader>ta Tabularize
 " Vim Airline
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme="serene"
+let g:airline_section_c = ''
 
-"Vim Bufferline
-"let g:bufferline_fname_mod = ':t'
-"let g:bufferline_echo = 0
+" Vim NerdCommenter
+let g:NERDCreateDefaultMappings=0
+map <leader>cc <plug>NERDCommenterToggle
+
+" Vim Bufferline
+let g:bufferline_fname_mod = ':t'
+let g:bufferline_echo = 0
 
 "Vim Syntastic
 let g:syntastic_check_on_wq = 0
