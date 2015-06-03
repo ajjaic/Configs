@@ -181,6 +181,15 @@ nnoremap <C-k> <C-u>
 "switch to previous edited buffer
 nnoremap <C-b> :b#<CR>
 
+"save file
+nnoremap <Leader>w :w<CR>
+
+"save all files
+nnoremap <Leader>l :wa<CR>
+
+"save and quit
+nnoremap <Leader>x :x<CR>
+
 "navigating the lines
 nnoremap J 3j
 nnoremap K 3k
@@ -251,15 +260,12 @@ nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
 cnoremap <leader>ta Tabularize
 
 " Vim Airline
+let g:airline_theme="powerlineish"
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme="serene"
-let g:airline_section_c = ''
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " Vim NerdCommenter
 let g:NERDCreateDefaultMappings=0
 map <leader>cc <plug>NERDCommenterToggle
-
-" Vim Bufferline
-let g:bufferline_fname_mod = ':t'
-let g:bufferline_echo = 0
