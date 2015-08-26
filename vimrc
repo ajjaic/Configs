@@ -9,32 +9,29 @@ filetype off
 filetype plugin off
 filetype plugin indent off
 
-" map leader
-let mapleader = ","
+let mapleader = "," " map leader
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
 
-" Keep Plugin commands between vundle#begin/end.
-call vundle#begin()
+call vundle#begin() " Keep Plugin commands between vundle#begin/end.
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" plugins on GitHub repo
+Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
-Plugin 'vim-scripts/bufkill.vim'
-Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'ervandew/supertab'
+Plugin 'bling/vim-airline'
+Plugin 'mhinz/vim-startify'
+Plugin 'pangloss/vim-javascript'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
 Plugin 'thinca/vim-unite-history'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'bling/vim-airline'
 
-" All of your Plugins must be added before the following line
-call vundle#end()
+call vundle#end() " All of your Plugins must be added before the following line
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -109,14 +106,11 @@ set wildignore=*.o,*~,*.py[co],*.obj,*.bak
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
-"dont continue comments when pushing o/O
-set formatoptions-=o
+set formatoptions-=o "dont continue comments when pushing o/O
 
-"enable mouse support in console
-set mouse=a
+set mouse=a "enable mouse support in console
 
-"autoread files changed outside vim
-set autoread
+set autoread "autoread files changed outside vim
 
 set hidden "allow buffers to exist in the background even if it is not in Window
 
@@ -132,7 +126,7 @@ set hlsearch   "highlight search words
 set incsearch  "incremental searching
 
 "set clipboard=unnamedplus "use the OS clipboard by default
-set clipboard=unnamed
+"set clipboard=unnamed
 
 set nobackup "do we need backups
 set noswapfile
@@ -143,15 +137,15 @@ set foldmethod=marker
 
 "vertical/horizontal scroll off settings
 set scrolloff=3     "minimal number of lines to keep above and below cursor
-set sidescrolloff=3 "minimal number of lines to keep to the left and right of cursor
-set sidescroll=1
+set sidescrolloff=3 "minimal number of characters to keep to the left and right of cursor
+"set sidescroll=1
 "set scrolljump=5
 
 "Lower delay of escaping out of other modes
 set timeout timeoutlen=1000 ttimeoutlen=0
 
 "change color of line numbers
-highlight LineNr ctermfg=blue ctermbg=black
+" highlight LineNr ctermfg=blue ctermbg=black
 
 "horizontal scroll jump
 nnoremap L 10zl
@@ -174,12 +168,12 @@ nnoremap <leader>s :noh<CR>
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
+"switch to previous edited buffer
+nnoremap <C-b> :b#<CR>
+
 "page down and Page up
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
-
-"switch to previous edited buffer
-nnoremap <C-b> :b#<CR>
 
 "save file
 nnoremap <Leader>w :w<CR>
@@ -221,26 +215,23 @@ nnoremap <Leader>E zE
 "search highlighted text
 vnoremap / yq/p<CR>
 
-"""""""""""""
-"  PLUGINS  "
-"""""""""""""
-
-" Bufkill mappings. Allows to keeps windows open even when a buffer is deleted
-cnoremap bd BD
+""""""""""""""""""""
+"  PLUGINS  CONFIG "
+""""""""""""""""""""
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0
 map f <Plug>(easymotion-s)
-map ew <Plug>(easymotion-bd-w)
-map er <Plug>(easymotion-bd-jk)
+"map ew <Plug>(easymotion-bd-w)
+"map er <Plug>(easymotion-bd-jk)
 
 " Unite
 let g:unite_prompt = '>>'
-let g:unite_source_grep_default_opts   = "-iInH"
-let g:unite_source_grep_recursive_opt  = "-r"
-let g:unite_source_grep_max_candidates = 200
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_buffer_time_format  = ""
+"let g:unite_source_grep_default_opts   = "-iInH"
+"let g:unite_source_grep_recursive_opt  = "-r"
+"let g:unite_source_grep_max_candidates = 200
+"let g:unite_source_history_yank_enable = 1
+"let g:unite_source_buffer_time_format  = ""
 nnoremap <silent> <Leader>ut :Unite -start-insert file_rec/async<CR><CR>
 nnoremap <silent> <Leader>uv :Unite -start-insert buffer<CR>
 nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
@@ -259,13 +250,36 @@ nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
 " Tabularize
 cnoremap <leader>ta Tabularize
 
-" Vim Airline
-let g:airline_theme="powerlineish"
-let g:airline#extensions#tabline#enabled  = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
 " Vim NerdCommenter
 let g:NERDCreateDefaultMappings=0
 map <leader>cc <plug>NERDCommenterToggle
+
+" Vim Airline
+let g:airline_theme = 'powerlineish'
+let g:airline_detect_modified = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#enabled  = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#branch#enabled=1
+let g:bufferline_echo = 0
+let g:airline_mode_map = { 'n'  : 'N', 'i'  : 'I', 'R'  : 'R', 'v'  : 'V', 'V'  : 'VL', 'c'  : 'CMD', }
+"let g:airline_section_b = '%{substitute(getcwd(), ".*\/", "", "g")} ' " Show the current working directory folder name
+"let g:airline_section_c = '%t' " Just show the file name
+
+" NerdTree
+nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
+nnoremap <silent><leader>nf :NERDTreeFind<CR>:wincmd =<CR>
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeChDirMode = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore = ['\.pyc$']
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " Close Vim if NERDTree is the last buffer
+
+" pangloss/vim-javascript
+let g:javascript_enable_domhtmlcss = 1
+
+" startify
+let g:startify_custom_header = map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
