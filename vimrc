@@ -248,7 +248,7 @@ nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
 nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
 
 " Tabularize
-cnoremap <leader>ta Tabularize
+vnoremap <leader>ta :Tabularize/=<CR>
 
 " Vim NerdCommenter
 let g:NERDCreateDefaultMappings=0
