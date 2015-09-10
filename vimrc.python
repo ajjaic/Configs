@@ -255,6 +255,9 @@ let g:startify_change_to_dir = 0
 
 " syntastic
 nnoremap <Leader>sr :SyntasticReset<CR>
+nnoremap <Leader>sn :lnext<CR>
+nnoremap <Leader>sp :lprev<CR>
+nnoremap <Leader>sc :lclose<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
