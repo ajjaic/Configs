@@ -8,9 +8,6 @@
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " necessary for lots of cool vim things
 set nocompatible
@@ -29,22 +26,22 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic' " needs checkers for checking various filetypes
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'mhinz/vim-startify'
-Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript' " required for web apps
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
 Plugin 'thinca/vim-unite-history'
-Plugin 'bitc/vim-hdevtools'
+Plugin 'scrooloose/syntastic' " needs checkers for checking haskell files (ghc-mod/hdevtools and alike)
+Plugin 'bitc/vim-hdevtools' " provides :HdevtoolsClear :HdevtoolsType :HdevtoolsInfo
 
 call vundle#end() " All of your Plugins must be added before the following line
 
-
+" Put your non-Plugin stuff after this line
 "trim trailing spaces
 function! TrimTrailingWhitespace()
     execute "normal mz"
@@ -61,7 +58,7 @@ if !exists("autocommands_loaded")
     "jump to last position when opening file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     "do not show matching parenthesis
-    "autocmd VimEnter * NoMatchParen
+    autocmd VimEnter * NoMatchParen
 endif
 
 "general Settings
@@ -84,8 +81,6 @@ set number
 set virtualedit=block
 
 set nowrap
-"set wrap "wrap lines
-"set linebreak "wrap lines at convenient points
 
 "indent settings
 set shiftwidth=4 "no of spaces for autoindent
@@ -119,27 +114,19 @@ set noshowmode
 
 set laststatus=2 "use 2 lines for status bar
 
-"searching
 set ignorecase "case insenstive while searching
 set smartcase  "case sensitive if search pattern contains uppercase characters
 set hlsearch   "highlight search words
 set incsearch  "incremental searching
 
-"set clipboard=unnamedplus "use the OS clipboard by default
-"set clipboard=unnamed
-
 set nobackup "do we need backups
 set noswapfile
 set nowb
 
-"vertical/horizontal scroll off settings
 set scrolloff=7     "minimal number of lines to keep above and below cursor
 set sidescrolloff=3 "minimal number of characters to keep to the left and right of cursor
-"set sidescroll=1
-"set scrolljump=5
 
-"Lower delay of escaping out of other modes
-set timeout timeoutlen=1000 ttimeoutlen=0
+set timeout timeoutlen=1000 ttimeoutlen=0 "Lower delay of escaping out of other modes
 
 "change color of line numbers
 " highlight LineNr ctermfg=blue ctermbg=black
@@ -250,8 +237,6 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#branch#enabled=1
 let g:bufferline_echo = 0
 let g:airline_mode_map = { 'n'  : 'N', 'i'  : 'I', 'R'  : 'R', 'v'  : 'V', 'V'  : 'VL', 'c'  : 'CMD', }
-"let g:airline_section_b = '%{substitute(getcwd(), ".*\/", "", "g")} ' " Show the current working directory folder name
-"let g:airline_section_c = '%t' " Just show the file name
 
 " NerdTree
 nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
