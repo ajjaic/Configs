@@ -110,7 +110,6 @@ set autoread "autoread files changed outside vim
 set hidden "allow buffers to exist in the background even if it is not in Window
 
 set showcmd "display command in lower right corner
-set noshowmode
 
 set laststatus=2 "use 2 lines for status bar
 
@@ -127,9 +126,6 @@ set scrolloff=7     "minimal number of lines to keep above and below cursor
 set sidescrolloff=3 "minimal number of characters to keep to the left and right of cursor
 
 set timeout timeoutlen=1000 ttimeoutlen=0 "Lower delay of escaping out of other modes
-
-"change color of line numbers
-" highlight LineNr ctermfg=blue ctermbg=black
 
 "horizontal scroll jump
 nnoremap L 10zl
