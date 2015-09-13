@@ -215,7 +215,7 @@ nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
 nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
 
 " Tabularize
-cnoremap <leader>ta Tabularize
+vnoremap <leader>ta :Tabularize/=<CR>
 
 " Vim NerdCommenter
 let g:NERDCreateDefaultMappings=0
@@ -256,13 +256,14 @@ nnoremap <Leader>hi :HdevtoolsInfo<CR>
 
 " syntastic
 nnoremap <Leader>sr :SyntasticReset<CR>
+nnoremap <Leader>sc :SyntasticCheck<CR>
 nnoremap <Leader>sn :lnext<CR>
 nnoremap <Leader>sp :lprev<CR>
-nnoremap <Leader>sc :lclose<CR>
+nnoremap <Leader>sl :lclose<CR>
+nnoremap <Leader>so :lopen<CR>
 let g:syntastic_haskell_hdevtools_args = '-g -Wall'
 let g:syntastic_haskell_hlint_args = '--hint=Default --hint=Dollar --hint=Generalise'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
