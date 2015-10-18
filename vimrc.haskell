@@ -85,7 +85,6 @@ set nowrap
 "indent settings
 set shiftwidth=4 "no of spaces for autoindent
 set softtabstop=4
-"set tabstop=4
 set expandtab    "expand tabs to spaces
 set autoindent
 set copyindent   "copy previous indentation on autoindenting
@@ -246,7 +245,7 @@ let g:NERDTreeIgnore = ['\.pyc$']
 let g:javascript_enable_domhtmlcss = 1
 
 " startify
-let g:startify_custom_header = map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+"let g:startify_custom_header = map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 let g:startify_change_to_dir = 0
 
 " vim-hdevtools
@@ -256,12 +255,12 @@ nnoremap <Leader>hi :HdevtoolsInfo<CR>
 
 " syntastic
 nnoremap <Leader>sr :SyntasticReset<CR>
-nnoremap <Leader>sc :SyntasticCheck<CR>
+nnoremap <Leader>st :SyntasticToggleMode<CR>
 nnoremap <Leader>sn :lnext<CR>
 nnoremap <Leader>sp :lprev<CR>
 nnoremap <Leader>sl :lclose<CR>
 nnoremap <Leader>so :lopen<CR>
-let g:syntastic_haskell_hdevtools_args = '-g -Wall'
+let g:syntastic_haskell_hdevtools_args = '-g -Wall -g -isrc'
 let g:syntastic_haskell_hlint_args = '--hint=Default --hint=Dollar --hint=Generalise'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_aggregate_errors = 1
