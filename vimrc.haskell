@@ -38,6 +38,7 @@ Plugin 'Shougo/neomru.vim'
 Plugin 'thinca/vim-unite-history'
 Plugin 'scrooloose/syntastic' " needs checkers for checking haskell files (ghc-mod/hdevtools and alike)
 Plugin 'bitc/vim-hdevtools' " provides :HdevtoolsClear :HdevtoolsType :HdevtoolsInfo
+Plugin 'urso/haskell_syntax.vim' "provides haskell syntax coloring
 
 call vundle#end() " All of your Plugins must be added before the following line
 
