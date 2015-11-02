@@ -31,10 +31,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'mhinz/vim-startify'
+Plugin 'pangloss/vim-javascript'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
 Plugin 'thinca/vim-unite-history'
+Plugin 'scrooloose/syntastic' " requires prospector for checking python syntax
 
 call vundle#end() " All of your Plugins must be added before the following line
 
@@ -107,6 +109,7 @@ set autoread "autoread files changed outside vim
 set hidden "allow buffers to exist in the background even if it is not in Window
 
 set showcmd "display command in lower right corner
+set noshowmode
 
 set laststatus=2 "use 2 lines for status bar
 
@@ -119,10 +122,14 @@ set nobackup "do we need backups
 set noswapfile
 set nowb
 
+
 set scrolloff=7     "minimal number of lines to keep above and below cursor
 set sidescrolloff=3 "minimal number of characters to keep to the left and right of cursor
 
 set timeout timeoutlen=1000 ttimeoutlen=0 "Lower delay of escaping out of other modes
+
+"change color of line numbers
+" highlight LineNr ctermfg=blue ctermbg=black
 
 "horizontal scroll jump
 nnoremap L 10zl
@@ -239,7 +246,21 @@ let g:NERDTreeChDirMode = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['\.pyc$']
 
+" pangloss/vim-javascript
+let g:javascript_enable_domhtmlcss = 1
+
 " startify
 let g:startify_custom_header = map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 let g:startify_change_to_dir = 0
+
+" syntastic
+nnoremap <Leader>sc :lclose<CR>
+nnoremap <Leader>st :SyntasticToggleMode<CR>
+nnoremap <Leader>sr :SyntasticReset<CR>
+let g:syntastic_python_checkers = ["prospector", "pep8"]
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 
