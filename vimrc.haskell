@@ -31,7 +31,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'mhinz/vim-startify'
-Plugin 'pangloss/vim-javascript' " required for web apps
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
@@ -87,8 +86,8 @@ set nowrap
 set shiftwidth=4 "no of spaces for autoindent
 set softtabstop=4
 set expandtab    "expand tabs to spaces
-set autoindent
-set copyindent   "copy previous indentation on autoindenting
+" set autoindent
+" set copyindent   "copy previous indentation on autoindenting
 set shiftround   "use multiple of shiftwidth when indenting
 set nojoinspaces "don't convert spaces to tabs
 set smarttab     "indent instead of tab at start of line
@@ -242,11 +241,7 @@ let g:NERDTreeChDirMode = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['\.pyc$']
 
-" pangloss/vim-javascript
-let g:javascript_enable_domhtmlcss = 1
-
 " startify
-"let g:startify_custom_header = map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 let g:startify_change_to_dir = 0
 
 " vim-hdevtools
