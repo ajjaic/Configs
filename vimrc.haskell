@@ -1,280 +1,32 @@
-" First install and run this -> git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" Run :PluginUpdate
-" goto ~/.vim/bundles/vimproc.vim
-" Run make
+" This file is meant to be used along with haskell-vim-now plugin
+" To use this configuration, install haskell-vim-now first
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-" necessary for lots of cool vim things
-set nocompatible
-filetype off
-filetype plugin off
-filetype plugin indent off
-
-let mapleader = "," " map leader
-
-set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
-
-call vundle#begin() " Keep Plugin commands between vundle#begin/end.
-
-Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'godlygeek/tabular'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ervandew/supertab'
-Plugin 'bling/vim-airline'
-Plugin 'mhinz/vim-startify'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'thinca/vim-unite-history'
-Plugin 'scrooloose/syntastic' " needs checkers for checking haskell files (ghc-mod/hdevtools and alike)
-Plugin 'bitc/vim-hdevtools' " provides :HdevtoolsClear :HdevtoolsType :HdevtoolsInfo
-Plugin 'neovimhaskell/haskell-vim' "provides haskell syntax coloring among other things
-
-call vundle#end() " All of your Plugins must be added before the following line
-
-" Put your non-Plugin stuff after this line
-"trim trailing spaces
-function! TrimTrailingWhitespace()
-    execute "normal mz"
-    %s/\s\+$//ge
-    execute "normal `z"
-endfunction
-
-if !exists("autocommands_loaded")
-    let autocommands_loaded = 1
-    "automatically reload vimrc when it is saved
-    autocmd BufWritePost .vimrc source ~/.vimrc
-    "remove any trailing whitespace in the file
-    autocmd BufWrite * :call TrimTrailingWhitespace()
-    "jump to last position when opening file
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    "do not show matching parenthesis
-    autocmd VimEnter * NoMatchParen
-endif
-
-"general Settings
-syntax enable
-syntax on
-filetype on
-filetype plugin on
-filetype plugin indent on
-
-"allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-"tell the term has 256 colors
-set t_Co=256
-
-"line numbers
-set number
-
-"block edit in visual mode
-set virtualedit=block
-
-set nowrap
-
-"indent settings
-set shiftwidth=4 "no of spaces for autoindent
-set softtabstop=4
-set expandtab    "expand tabs to spaces
-" set autoindent
-" set copyindent   "copy previous indentation on autoindenting
-set shiftround   "use multiple of shiftwidth when indenting
-set nojoinspaces "don't convert spaces to tabs
-set smarttab     "indent instead of tab at start of line
-"set linespace=0 "sets linespace (px between lines)
-
-"configure wild menu
-set wildmenu
-set wildmode=list:longest,full
-set wildignore=*.o,*~,*.py[co],*.obj,*.bak
-set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-
-set formatoptions-=o "dont continue comments when pushing o/O
-
-set mouse=a "enable mouse support in console
-
-set autoread "autoread files changed outside vim
-
-set hidden "allow buffers to exist in the background even if it is not in Window
-
-set showcmd "display command in lower right corner
-
-set laststatus=2 "use 2 lines for status bar
-
-set ignorecase "case insenstive while searching
-set smartcase  "case sensitive if search pattern contains uppercase characters
-set hlsearch   "highlight search words
-set incsearch  "incremental searching
-
-set nobackup "do we need backups
-set noswapfile
-set nowb
-
-set scrolloff=7     "minimal number of lines to keep above and below cursor
-set sidescrolloff=3 "minimal number of characters to keep to the left and right of cursor
-
-set timeout timeoutlen=1000 ttimeoutlen=0 "Lower delay of escaping out of other modes
-
-"horizontal scroll jump
-nnoremap L 10zl
-nnoremap H 10zh
-
-"indent and keep selection so that i can do it again
-vnoremap < <gv
-vnoremap > >gv
-
-"remap jk to escape from insert mode.
+" remap jk to escape from insert mode
 inoremap jk <Esc>
 
-"edit vimrc file
-nnoremap  <Leader>ev :e ~/.vimrc<CR>
+" edit vimrc file
+nnoremap <leader>ev :e ~/.config/haskell-vim-now/vimrc.local<cr>
+nnoremap <leader>ep :e ~/.config/haskell-vim-now/plugins.vim<cr>
+nnoremap <leader>eo :e ~/.vimrc<cr>
 
-"clear highlighted text
-nnoremap <leader>s :noh<CR>
+" save file, save all files, save and quit
+nnoremap <leader>w :w<cr>
 
-"buffer settings
-nnoremap <C-l> :bn<CR>
-nnoremap <C-h> :bp<CR>
+" next and previous buffers
+nnoremap <C-h> :bp<cr>
+nnoremap <C-l> :bn<cr>
 
-"switch to previous edited buffer
-nnoremap <C-b> :b#<CR>
+" check current file with ghc-mod
+nmap <silent> <leader>hc :GhcModCheck<cr>
 
-"page down and Page up
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+" commentary
+nmap cc :Commentary<cr>
+vmap cc :Commentary<cr>
 
-"save file
-nnoremap <Leader>w :w<CR>
-
-"save all files
-nnoremap <Leader>l :wa<CR>
-
-"save and quit
-nnoremap <Leader>x :x<CR>
-
-"navigating the lines
-nnoremap J 3j
-nnoremap K 3k
-vnoremap J 3j
-vnoremap K 3k
-
-"join lines
-nnoremap ; J
-
-"navigate display lines
-nnoremap j gj
-nnoremap k gk
-
-"visually show when I enter and leave `insert` mode
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
-
-"search highlighted text
-vnoremap / yq/p<CR>
-
-""""""""""""""""""""
-"  PLUGINS  CONFIG "
-""""""""""""""""""""
-
-" EasyMotion
+" easy-motion
 let g:EasyMotion_do_mapping = 0
 map f <Plug>(easymotion-s)
 
-" Unite
-"let g:unite_source_grep_default_opts   = "-iInH"
-"let g:unite_source_grep_recursive_opt  = "-r"
-"let g:unite_source_grep_max_candidates = 200
-"let g:unite_source_buffer_time_format  = ""
-let g:unite_prompt = '>>'
-let g:unite_source_history_yank_enable = 1
-nnoremap <silent> <Leader>ut :Unite -start-insert file_rec/async<CR>
-nnoremap <silent> <Leader>uv :Unite -start-insert buffer<CR>
-nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
-nnoremap <silent> <leader>uc :Unite -start-insert history/command<CR>
-nnoremap <silent> <leader>uy :Unite history/yank<CR>
-nnoremap <silent> <Leader>um :Unite -start-insert file_mru<CR>
-nnoremap <silent> <leader>us :Unite history/search<CR>
-nnoremap <silent> <leader>up :Unite grep:./*<CR>
-nnoremap <silent> <leader>ug :UniteWithCursorWord grep:./*<CR>
-nnoremap <silent> <leader>ub :Unite grep:$buffers<CR>
-nnoremap <silent> <leader>uw :UniteWithCursorWord grep:$buffers<CR>
-nnoremap <silent> <leader>uf :UniteWithCursorWord file_rec/async<CR>
-nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
-nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
-
-" Tabularize
-vnoremap <leader>ta :Tabularize/=<CR>
-
-" Vim NerdCommenter
-let g:NERDCreateDefaultMappings=0
-map <leader>cc <plug>NERDCommenterToggle
-
-" Vim Airline
-let g:airline_theme = 'powerlineish'
-let g:airline_detect_modified = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#tabline#enabled  = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#branch#enabled=1
-let g:bufferline_echo = 0
-let g:airline_mode_map = { 'n'  : 'N', 'i'  : 'I', 'R'  : 'R', 'v'  : 'V', 'V'  : 'VL', 'c'  : 'CMD', }
-
-" NerdTree
-nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
-nnoremap <silent><leader>nf :NERDTreeFind<CR>:wincmd =<CR>
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeChDirMode = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = ['\.pyc$']
-
-" startify
-let g:startify_change_to_dir = 0
-
-" vim-hdevtools
-nnoremap <Leader>hc :HdevtoolsClear<CR>
-nnoremap <Leader>ht :HdevtoolsType<CR>
-nnoremap <Leader>hi :HdevtoolsInfo<CR>
-
-" syntastic
-nnoremap <Leader>sr :SyntasticReset<CR>
-nnoremap <Leader>st :SyntasticToggleMode<CR>
-nnoremap <Leader>sn :lnext<CR>
-nnoremap <Leader>sp :lprev<CR>
-nnoremap <Leader>sl :lclose<CR>
-nnoremap <Leader>so :lopen<CR>
-let g:syntastic_haskell_hdevtools_args = '-g -Wall -g -isrc'
-let g:syntastic_haskell_hlint_args = '--hint=Default --hint=Dollar --hint=Generalise'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-
-" neovimhaskell/haskell-vim
-nnoremap <Leader>nm :HaskellAddModuleComment<CR>
-let g:haskell_enable_quantification = 1
-let g:haskell_enable_recursivedo = 1
-let g:haskell_enable_arrowsyntax = 1
-let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_enable_typeroles = 1
-let g:haskell_enable_static_pointers = 1
-let g:haskell_indent_if = 3
-let g:haskell_indent_case = 2
-let g:haskell_indent_let = 4
-let g:haskell_indent_where = 6
-let g:haskell_indent_do = 3
-let g:haskell_indent_in = 1
-
+" indent and keep selection so that I can do it again
+vnoremap < <gv
+vnoremap > >gv
