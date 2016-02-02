@@ -11,6 +11,7 @@ nnoremap <leader>eo :e ~/.vimrc<cr>
 
 " save file, save all files, save and quit
 nnoremap <leader>w :w<cr>
+nnoremap <leader>l :wa<cr>
 
 " next and previous buffers
 nnoremap <C-h> :bp<cr>
@@ -18,6 +19,15 @@ nnoremap <C-l> :bn<cr>
 
 " check current file with ghc-mod
 nmap <silent> <leader>hc :GhcModCheck<cr>
+
+" Disable highlight when <leader><cr> is pressed
+" but preserve cursor coloring
+nmap <silent> <leader>, :noh\|hi Cursor guibg=red<cr>
+augroup haskell
+  autocmd!
+  autocmd FileType haskell map <silent> <leader>, :noh<cr>:GhcModTypeClear<cr>:SyntasticReset<cr>
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup END
 
 " commentary
 nmap cc :Commentary<cr>
@@ -30,3 +40,23 @@ map f <Plug>(easymotion-s)
 " indent and keep selection so that I can do it again
 vnoremap < <gv
 vnoremap > >gv
+
+" stack related commands
+nnoremap <leader>. :!stack ghci<cr>
+
+" unite 
+let g:unite_prompt = '>>'
+let g:unite_source_history_yank_enable = 1
+nnoremap <silent> <Leader>ut :Unite -start-insert -input=!.stack-work\ !.gitignore\  file_rec/async<CR>
+nnoremap <silent> <Leader>uv :Unite -start-insert buffer<CR>
+nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
+nnoremap <silent> <leader>uc :Unite -start-insert history/command<CR>
+nnoremap <silent> <leader>uy :Unite -start-insert history/yank<CR>
+nnoremap <silent> <Leader>um :Unite -start-insert file_mru<CR>
+nnoremap <silent> <leader>us :Unite -start-insert history/search<CR>
+nnoremap <silent> <leader>up :Unite grep:./*<CR>
+nnoremap <silent> <leader>ug :UniteWithCursorWord grep:./*<CR>
+nnoremap <silent> <leader>ub :Unite grep:$buffers<CR>
+nnoremap <silent> <leader>uw :UniteWithCursorWord grep:$buffers<CR>
+nnoremap <silent> <leader>uf :UniteWithCursorWord file_rec/async<CR>
+nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
