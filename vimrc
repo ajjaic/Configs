@@ -30,8 +30,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
-Plugin 'mhinz/vim-startify'
-Plugin 'pangloss/vim-javascript'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
@@ -128,9 +126,6 @@ set sidescrolloff=3 "minimal number of characters to keep to the left and right 
 
 set timeout timeoutlen=1000 ttimeoutlen=0 "Lower delay of escaping out of other modes
 
-"change color of line numbers
-" highlight LineNr ctermfg=blue ctermbg=black
-
 "horizontal scroll jump
 nnoremap L 10zl
 nnoremap H 10zh
@@ -146,44 +141,24 @@ inoremap jk <Esc>
 nnoremap  <Leader>ev :e ~/.vimrc<CR>
 
 "clear highlighted text
-nnoremap <leader>s :noh<CR>
+nnoremap <leader>, :noh<CR>
 
 "buffer settings
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
 
-"switch to previous edited buffer
-nnoremap <C-b> :b#<CR>
-
 "page down and Page up
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+nnoremap <C-j> }
+nnoremap <C-k> {
 
-"save file
+"save file, save all files, save all and quit
 nnoremap <Leader>w :w<CR>
-
-"save all files
 nnoremap <Leader>l :wa<CR>
-
-"save and quit
-nnoremap <Leader>x :x<CR>
-
-"navigating the lines
-nnoremap J 3j
-nnoremap K 3k
-vnoremap J 3j
-vnoremap K 3k
-
-"join lines
-nnoremap ; J
+nnoremap <Leader>x :wa<CR>:q<CR>
 
 "navigate display lines
 nnoremap j gj
 nnoremap k gk
-
-"visually show when I enter and leave `insert` mode
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
 
 "search highlighted text
 vnoremap / yq/p<CR>
@@ -226,17 +201,17 @@ let g:NERDCreateDefaultMappings=0
 map <leader>cc <plug>NERDCommenterToggle
 
 " Vim Airline
-let g:airline_theme = 'powerlineish'
-let g:airline_detect_modified = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+"let g:airline_theme = 'powerlineish'
+"let g:airline_detect_modified = 1
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#branch#enabled=1
-let g:bufferline_echo = 0
-let g:airline_mode_map = { 'n'  : 'N', 'i'  : 'I', 'R'  : 'R', 'v'  : 'V', 'V'  : 'VL', 'c'  : 'CMD', }
+"let g:airline#extensions#whitespace#enabled = 1
+"let g:airline#extensions#hunks#enabled = 0
+"let g:airline#extensions#branch#enabled=1
+"let g:bufferline_echo = 0
+"let g:airline_mode_map = { 'n'  : 'N', 'i'  : 'I', 'R'  : 'R', 'v'  : 'V', 'V'  : 'VL', 'c'  : 'CMD', }
 
 " NerdTree
 nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
@@ -245,13 +220,6 @@ let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeChDirMode = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['\.pyc$']
-
-" pangloss/vim-javascript
-let g:javascript_enable_domhtmlcss = 1
-
-" startify
-let g:startify_custom_header = map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-let g:startify_change_to_dir = 0
 
 " syntastic
 nnoremap <Leader>sc :lclose<CR>
