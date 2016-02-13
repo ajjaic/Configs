@@ -17,11 +17,14 @@ filetype plugin indent off
 
 let mapleader = "," " map leader
 
-set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin() " Keep Plugin commands between vundle#begin/end.
+"Keep Plugin commands between vundle#begin/end.
+call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
+"let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/nerdcommenter'
@@ -33,12 +36,14 @@ Plugin 'bling/vim-airline'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
-Plugin 'thinca/vim-unite-history'
-Plugin 'scrooloose/syntastic' " requires prospector for checking python syntax
+Plugin 'Shougo/neoyank.vim'
+Plugin 'vim-scripts/wombat256.vim'
 
-call vundle#end() " All of your Plugins must be added before the following line
+"All of your Plugins must be added before the following line
+call vundle#end()
 
-" Put your non-Plugin stuff after this line
+"Put your non-Plugin stuff after this line
+
 "trim trailing spaces
 function! TrimTrailingWhitespace()
     execute "normal mz"
@@ -58,6 +63,12 @@ if !exists("autocommands_loaded")
     autocmd VimEnter * NoMatchParen
 endif
 
+if !has('nvim')
+    " Only set this for vim, since newovim is utf8 as default and setting it
+    " causes problems when reloading the .vimrc configuration
+    set encoding=utf8
+endif
+
 "general Settings
 syntax enable
 syntax on
@@ -68,67 +79,87 @@ filetype plugin indent on
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+"kill ex mode
+nnoremap Q <nop>
+
 "tell the term has 256 colors
 set t_Co=256
 
-"line numbers
-set number
+"folding config
+set foldmethod=marker
+set foldcolumn=2
+
+"set unix as standard file type
+set ffs=unix,dos,mac
+
+"relative line numbers
+set relativenumber
 
 "block edit in visual mode
 set virtualedit=block
 
+"wrap or no wrap
 set nowrap
 
 "indent settings
-set shiftwidth=4 "no of spaces for autoindent
-set softtabstop=4
-"set tabstop=4
-set expandtab    "expand tabs to spaces
-set autoindent
-set copyindent   "copy previous indentation on autoindenting
-set shiftround   "use multiple of shiftwidth when indenting
-set nojoinspaces "don't convert spaces to tabs
-set smarttab     "indent instead of tab at start of line
-"set linespace=0 "sets linespace (px between lines)
+set shiftwidth=2 "no of spaces for autoindent
+set tabstop=2
+
+"expand tabs to spaces
+set expandtab
+
+"indent instead of tab at start of line
+set smarttab
+
+"set 7 lines to the cursor when moving vertically
+set so=7
 
 "configure wild menu
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*.o,*~,*.py[co],*.obj,*.bak
-set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"set wildignore=*.o,*~,*.py[co],*.obj,*.bak
+"set wildignore+=*.png,*.jpg,*.gif
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
-set formatoptions-=o "dont continue comments when pushing o/O
+"dont continue comments when pushing o/O
+set formatoptions-=o
 
-set mouse=a "enable mouse support in console
+"enable mouse support in console
+set mouse=a
 
-set autoread "autoread files changed outside vim
+"autoread files changed outside vim
+set autoread
 
-set hidden "allow buffers to exist in the background even if it is not in Window
+"allow buffers to exist in the background even if it is not in Window
+set hidden
 
-set showcmd "display command in lower right corner
-set noshowmode
+"display command in lower right corner
+set showcmd
 
-set laststatus=2 "use 2 lines for status bar
+"use 2 lines for status bar
+set laststatus=2
 
-set ignorecase "case insenstive while searching
-set smartcase  "case sensitive if search pattern contains uppercase characters
-set hlsearch   "highlight search words
-set incsearch  "incremental searching
+"case insenstive while searching
+set ignorecase
 
-set nobackup "do we need backups
+"case sensitive if search pattern contains uppercase characters
+set smartcase
+
+"highlight search words
+set hlsearch
+
+"incremental searching
+set incsearch
+
+"do we need backups
+set nobackup
+
+"we do not need any swapfile and no writeback
 set noswapfile
 set nowb
 
-
-set scrolloff=7     "minimal number of lines to keep above and below cursor
-set sidescrolloff=3 "minimal number of characters to keep to the left and right of cursor
-
-set timeout timeoutlen=1000 ttimeoutlen=0 "Lower delay of escaping out of other modes
-
-"horizontal scroll jump
-nnoremap L 10zl
-nnoremap H 10zh
+"minimal number of lines to keep above and below cursor
+set scrolloff=7
 
 "indent and keep selection so that i can do it again
 vnoremap < <gv
@@ -151,9 +182,16 @@ nnoremap <C-h> :bp<CR>
 nnoremap <C-j> }
 nnoremap <C-k> {
 
-"save file, save all files, save all and quit
+"close every window in current tabview but the current
+nnoremap <leader>bo <c-w>o
+
+"save file
 nnoremap <Leader>w :w<CR>
+
+"save all files
 nnoremap <Leader>l :wa<CR>
+
+"save all and quit
 nnoremap <Leader>x :wa<CR>:q<CR>
 
 "navigate display lines
@@ -167,18 +205,13 @@ vnoremap / yq/p<CR>
 "  PLUGINS  CONFIG "
 """"""""""""""""""""
 
-" EasyMotion
+"easyMotion
 let g:EasyMotion_do_mapping = 0
 map f <Plug>(easymotion-s)
 
-" Unite
-"let g:unite_source_grep_default_opts   = "-iInH"
-"let g:unite_source_grep_recursive_opt  = "-r"
-"let g:unite_source_grep_max_candidates = 200
-"let g:unite_source_buffer_time_format  = ""
+"unite
 let g:unite_prompt = '>>'
-let g:unite_source_history_yank_enable = 1
-nnoremap <silent> <Leader>ut :Unite -start-insert file_rec/async<CR><CR>
+nnoremap <silent> <Leader>ut :Unite -start-insert file_rec/async<CR>
 nnoremap <silent> <Leader>uv :Unite -start-insert buffer<CR>
 nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
 nnoremap <silent> <leader>uc :Unite -start-insert history/command<CR>
@@ -191,44 +224,32 @@ nnoremap <silent> <leader>ub :Unite grep:$buffers<CR>
 nnoremap <silent> <leader>uw :UniteWithCursorWord grep:$buffers<CR>
 nnoremap <silent> <leader>uf :UniteWithCursorWord file_rec/async<CR>
 nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
-nnoremap <silent> <leader>uj :Unite -start-insert jump<CR>
 
-" Tabularize
+"tabularize
 vnoremap <leader>ta :Tabularize/=<CR>
 
-" Vim NerdCommenter
+"nerdCommenter
 let g:NERDCreateDefaultMappings=0
-map <leader>cc <plug>NERDCommenterToggle
+nnoremap <leader>cc <plug>NERDCommenterToggle
 
-" Vim Airline
-"let g:airline_theme = 'powerlineish'
-"let g:airline_detect_modified = 1
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
+"airline
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline#extensions#whitespace#enabled = 1
-"let g:airline#extensions#hunks#enabled = 0
-"let g:airline#extensions#branch#enabled=1
-"let g:bufferline_echo = 0
-"let g:airline_mode_map = { 'n'  : 'N', 'i'  : 'I', 'R'  : 'R', 'v'  : 'V', 'V'  : 'VL', 'c'  : 'CMD', }
+let g:airline#extensions#branch#enabled=1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_powerline_fonts = 1
+let g:airline_symbols.space = "\ua0"
 
-" NerdTree
+"nerdTree
 nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
-nnoremap <silent><leader>nf :NERDTreeFind<CR>:wincmd =<CR>
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeChDirMode = 1
-let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['\.pyc$']
+hi Directory guifg=#8ac6f2
 
-" syntastic
-nnoremap <Leader>sc :lclose<CR>
-nnoremap <Leader>st :SyntasticToggleMode<CR>
-nnoremap <Leader>sr :SyntasticReset<CR>
-let g:syntastic_python_checkers = ["prospector", "pep8"]
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-
+"colorscheme
+try
+    colorscheme wombat256mod
+catch
+endtry
+hi! link SignColumn LineNr
