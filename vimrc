@@ -85,10 +85,6 @@ nnoremap Q <nop>
 "tell the term has 256 colors
 set t_Co=256
 
-"folding config
-set foldmethod=marker
-set foldcolumn=2
-
 "set unix as standard file type
 set ffs=unix,dos,mac
 
@@ -169,7 +165,7 @@ vnoremap > >gv
 inoremap jk <Esc>
 
 "edit vimrc file
-nnoremap  <Leader>ev :e ~/.vimrc<CR>
+nnoremap  <leader>ev :e ~/.vimrc<CR>
 
 "clear highlighted text
 nnoremap <leader>, :noh<CR>
@@ -186,13 +182,13 @@ nnoremap <C-k> {
 nnoremap <leader>bo <c-w>o
 
 "save file
-nnoremap <Leader>w :w<CR>
+nnoremap <leader>w :w<CR>
 
 "save all files
-nnoremap <Leader>l :wa<CR>
+nnoremap <leader>l :wa<CR>
 
 "save all and quit
-nnoremap <Leader>x :wa<CR>:q<CR>
+nnoremap <leader>x :wa<CR>:q<CR>
 
 "navigate display lines
 nnoremap j gj
@@ -200,6 +196,14 @@ nnoremap k gk
 
 "search highlighted text
 vnoremap / yq/p<CR>
+
+"folding config
+set foldmethod=marker
+set foldcolumn=3
+vnoremap <leader>c zf
+nnoremap <leader>a za
+nnoremap <leader>m zM
+nnoremap <leader>r zR
 
 """"""""""""""""""""
 "  PLUGINS  CONFIG "
@@ -211,12 +215,12 @@ map f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
-nnoremap <silent> <Leader>ut :Unite -start-insert file_rec/async<CR>
-nnoremap <silent> <Leader>uv :Unite -start-insert buffer<CR>
+nnoremap <silent> <leader>ut :Unite -start-insert file_rec/async<CR>
+nnoremap <silent> <leader>uv :Unite -start-insert buffer<CR>
 nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
 nnoremap <silent> <leader>uc :Unite -start-insert history/command<CR>
 nnoremap <silent> <leader>uy :Unite history/yank<CR>
-nnoremap <silent> <Leader>um :Unite -start-insert file_mru<CR>
+nnoremap <silent> <leader>um :Unite -start-insert file_mru<CR>
 nnoremap <silent> <leader>us :Unite history/search<CR>
 nnoremap <silent> <leader>up :Unite grep:./*<CR>
 nnoremap <silent> <leader>ug :UniteWithCursorWord grep:./*<CR>
