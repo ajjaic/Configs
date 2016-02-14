@@ -27,8 +27,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
@@ -228,9 +228,8 @@ nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
 "tabularize
 vnoremap <leader>ta :Tabularize/=<CR>
 
-"nerdCommenter
-let g:NERDCreateDefaultMappings=0
-nnoremap <leader>cc <plug>NERDCommenterToggle
+"tpope commentary
+nnoremap <leader>cc :Commentary<CR>
 
 "airline
 let g:airline#extensions#tabline#enabled  = 1
