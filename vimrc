@@ -89,6 +89,7 @@ set t_Co=256
 set ffs=unix,dos,mac
 
 "relative line numbers
+set nu
 set relativenumber
 
 "block edit in visual mode
