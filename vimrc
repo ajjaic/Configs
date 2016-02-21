@@ -166,14 +166,14 @@ vnoremap > >gv
 inoremap jk <Esc>
 
 "edit vimrc file
-nnoremap  <leader>ev :e ~/.vimrc<CR>
+nnoremap  <leader>ev :e ~/.vimrc<cr>
 
 "clear highlighted text
-nnoremap <leader>, :noh<CR>
+nnoremap <leader>, :noh<cr>
 
 "buffer settings
-nnoremap <C-l> :bn<CR>
-nnoremap <C-h> :bp<CR>
+nnoremap <C-l> :bn<cr>
+nnoremap <C-h> :bp<cr>
 
 "page down and Page up
 nnoremap <C-j> }
@@ -183,20 +183,20 @@ nnoremap <C-k> {
 nnoremap <leader>bo <c-w>o
 
 "save file
-nnoremap <leader>w :w<CR>
+nnoremap <leader>w :w<cr>
 
 "save all files
-nnoremap <leader>l :wa<CR>
+nnoremap <leader>l :wa<cr>
 
 "save all and quit
-nnoremap <leader>x :wa<CR>:q<CR>
+nnoremap <leader>x :wa<cr>:q<cr>
 
 "navigate display lines
 nnoremap j gj
 nnoremap k gk
 
 "search highlighted text
-vnoremap / yq/p<CR>
+vnoremap / yq/p<cr>
 
 "folding config
 set foldmethod=marker
@@ -205,6 +205,10 @@ vnoremap <leader>c zf
 nnoremap <leader>a za
 nnoremap <leader>m zM
 nnoremap <leader>r zR
+
+"dim and undim comments
+nnoremap <leader>dc :hi! link Comment Ignore<cr>
+nnoremap <leader>ec :hi! link Comment Comment<cr>
 
 """"""""""""""""""""
 "  PLUGINS  CONFIG "
@@ -216,25 +220,25 @@ map f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
-nnoremap <silent> <leader>ut :Unite -start-insert file_rec/async<CR>
-nnoremap <silent> <leader>uv :Unite -start-insert buffer<CR>
-nnoremap <silent> <leader>ul :Unite -start-insert line<CR><CR>
-nnoremap <silent> <leader>uc :Unite -start-insert history/command<CR>
-nnoremap <silent> <leader>uy :Unite history/yank<CR>
-nnoremap <silent> <leader>um :Unite -start-insert file_mru<CR>
-nnoremap <silent> <leader>us :Unite history/search<CR>
-nnoremap <silent> <leader>up :Unite grep:./*<CR>
-nnoremap <silent> <leader>ug :UniteWithCursorWord grep:./*<CR>
-nnoremap <silent> <leader>ub :Unite grep:$buffers<CR>
-nnoremap <silent> <leader>uw :UniteWithCursorWord grep:$buffers<CR>
-nnoremap <silent> <leader>uf :UniteWithCursorWord file_rec/async<CR>
-nnoremap <silent> <leader>ud :UniteWithBufferDir -start-insert file<CR>
+nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
+nnoremap <leader>uv :Unite -start-insert buffer<cr>
+nnoremap <leader>ul :Unite -start-insert line<cr>
+nnoremap <leader>uc :Unite -start-insert history/command<cr>
+nnoremap <leader>uy :Unite history/yank<cr>
+nnoremap <leader>um :Unite -start-insert file_mru<cr>
+nnoremap <leader>us :Unite history/search<cr>
+nnoremap <leader>up :Unite grep:./*<cr>
+nnoremap <leader>ug :UniteWithCursorWord grep:./*<cr>
+nnoremap <leader>ub :Unite grep:$buffers<cr>
+nnoremap <leader>uw :UniteWithCursorWord grep:$buffers<cr>
+nnoremap <leader>uf :UniteWithCursorWord file_rec/async<cr>
+nnoremap <leader>ud :UniteWithBufferDir -start-insert file<cr>
 
 "tabularize
-vnoremap <leader>ta :Tabularize/=<CR>
+vnoremap <leader>ta :Tabularize/=<cr>
 
 "tpope commentary
-nnoremap <leader>cc :Commentary<CR>
+nnoremap <leader>cc :Commentary<cr>
 
 "airline
 let g:airline#extensions#tabline#enabled  = 1
@@ -247,7 +251,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_symbols.space = "\ua0"
 
 "nerdTree
-nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
+nnoremap <leader>nn :NERDTreeToggle<cr>:wincmd =<cr>
 let g:NERDTreeIgnore = ['\.pyc$']
 hi Directory guifg=#8ac6f2
 
