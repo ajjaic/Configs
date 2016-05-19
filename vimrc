@@ -108,15 +108,12 @@ set expandtab
 "indent instead of tab at start of line
 set smarttab
 
-"set 7 lines to the cursor when moving vertically
-set so=7
-
 "configure wild menu
 set wildmenu
 set wildmode=list:longest,full
-"set wildignore=*.o,*~,*.py[co],*.obj,*.bak
-"set wildignore+=*.png,*.jpg,*.gif
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore=*.o,*~,*.py[co],*.obj,*.bak
+set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 "dont continue comments when pushing o/O
 set formatoptions-=o
@@ -156,7 +153,7 @@ set noswapfile
 set nowb
 
 "minimal number of lines to keep above and below cursor
-set scrolloff=7
+set scrolloff=3
 
 "indent and keep selection so that i can do it again
 vnoremap < <gv
