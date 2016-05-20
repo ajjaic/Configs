@@ -155,6 +155,9 @@ set nowb
 "minimal number of lines to keep above and below cursor
 set scrolloff=3
 
+"clipboard settings to enable yanking/pasting from/to vim or other programs
+set clipboard=unnamedplus,autoselect
+
 "indent and keep selection so that i can do it again
 vnoremap < <gv
 vnoremap > >gv
