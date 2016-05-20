@@ -198,10 +198,16 @@ vnoremap / yq/p<cr>
 "folding config
 set foldmethod=marker
 set foldcolumn=3
-vnoremap <leader>c zf
-nnoremap <leader>a za
-nnoremap <leader>m zM
-nnoremap <leader>r zR
+  "create fold
+vnoremap <leader>fc zf
+  "toggle fold
+nnoremap <leader>fa za
+  "contract all folds
+nnoremap <leader>fm zM
+  "expand all folds
+nnoremap <leader>fr zR
+  "delete fold
+nnoremap <leader>fe zE
 
 "dim and undim comments
 nnoremap <leader>dc :hi! link Comment Ignore<cr>
