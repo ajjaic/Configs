@@ -172,10 +172,6 @@ nnoremap <leader>, :noh<cr>
 nnoremap <C-l> :bn<cr>
 nnoremap <C-h> :bp<cr>
 
-"page down and Page up
-nnoremap <C-j> }
-nnoremap <C-k> {
-
 "close every window in current tabview but the current
 nnoremap <leader>bo <c-w>o
 
