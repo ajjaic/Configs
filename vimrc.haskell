@@ -43,6 +43,18 @@ Plugin 'Shougo/neoyank.vim'
   " Unite command/search history
 Plugin 'thinca/vim-unite-history'
 
+"Haskell related plugins
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'Shougo/neocomplete.vim'
+  "required for vim-snipmate to work
+Plugin 'garbas/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+  "snippet library
+Plugin 'honza/vim-snippets'
+
+
 "All of your Plugins must be added before the following line
 call vundle#end()
 
@@ -162,6 +174,9 @@ set scrolloff=3
 "clipboard settings to enable yanking/pasting from/to vim or other programs
 set clipboard=unnamedplus,autoselect
 
+"make the autocomplete menu more pleasant
+set completeopt=menuone,menu,longest
+
 "indent and keep selection so that i can do it again
 vnoremap < <gv
 vnoremap > >gv
@@ -268,8 +283,19 @@ catch
 endtry
 hi! link SignColumn LineNr
 
+"ghc-mod
+map <leader>gw :GhcModTypeInsert<cr>
+map <leader>gs :GhcModSplitFunCase<cr>
+map <leader>gg :GhcModType<cr>
+nnoremap <leader>g, :GhcModTypeClear<cr>
+
+"neco-ghc
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
 "supertab
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+
 if has("gui_running")
   imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
 else
@@ -277,3 +303,7 @@ else
     inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
   endif
 endif
+
+"vim-snipmate
+imap <C-j> <Plug>snipMateNextOrTrigger
+imap <C-k> <Plug>snipMateShow
