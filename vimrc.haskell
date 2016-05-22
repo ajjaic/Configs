@@ -284,10 +284,12 @@ endtry
 hi! link SignColumn LineNr
 
 "ghc-mod
-map <leader>gw :GhcModTypeInsert<cr>
-map <leader>gs :GhcModSplitFunCase<cr>
-map <leader>gg :GhcModType<cr>
+nnoremap <leader>gl :GhcModLint<cr>
+nnoremap <leader>gi :GhcModTypeInsert<cr>
+nnoremap <leader>gs :GhcModSplitFunCase<cr>
+nnoremap <leader>gg :GhcModType<cr>
 nnoremap <leader>g, :GhcModTypeClear<cr>
+autocmd BufWritePost *.hs GhcModCheckAsync
 
 "neco-ghc
 let g:haskellmode_completion_ghc = 1
