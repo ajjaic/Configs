@@ -241,7 +241,7 @@ map f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
-nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
+nnoremap <leader>ut :Unite -start-insert -input=!.stack-work\  file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
 nnoremap <leader>ul :Unite -start-insert line<cr>
 nnoremap <leader>uc :Unite -start-insert history/command<cr>
