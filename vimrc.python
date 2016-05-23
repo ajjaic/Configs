@@ -44,8 +44,10 @@ Plugin 'Shougo/neoyank.vim'
 Plugin 'thinca/vim-unite-history'
 
 "python specific plugins
-    "requires prospector for checking python syntax
+  "requires prospector for checking python syntax
 Plugin 'scrooloose/syntastic'
+  "requires ctags. used for generating 'goto' tags for project files
+Plugin 'majutsushi/tagbar'
 
 "All of your Plugins must be added before the following line
 call vundle#end()
@@ -273,14 +275,14 @@ endtry
 hi! link SignColumn LineNr
 
 "supertab
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-if has("gui_running")
-  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-else
-  if has("unix")
-    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-  endif
-endif
+" let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+" if has("gui_running")
+"   imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+" else
+"   if has("unix")
+"     inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+"   endif
+" endif
 
 "syntastic
 nnoremap <Leader>sr :SyntasticReset<CR>
@@ -294,3 +296,5 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
+" tagbar
+nnoremap <Leader>tt :TagbarToggle<CR>
