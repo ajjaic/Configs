@@ -36,11 +36,11 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
-  " Unite most recently used
+  "unite most recently used
 Plugin 'Shougo/neomru.vim'
-  " Unite yank history
+  "unite yank history
 Plugin 'Shougo/neoyank.vim'
-  " Unite command/search history
+  "unite command/search history
 Plugin 'thinca/vim-unite-history'
 
 "python specific plugins
