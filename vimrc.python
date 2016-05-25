@@ -9,7 +9,7 @@
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-" necessary for lots of cool vim things
+"necessary for lots of cool vim things
 set nocompatible
 filetype off
 filetype plugin off
@@ -20,7 +20,7 @@ let mapleader = "," " map leader
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
-"Keep Plugin commands between vundle#begin/end.
+"keep Plugin commands between vundle#begin/end.
 call vundle#begin()
 
 "let Vundle manage Vundle, required
@@ -49,10 +49,10 @@ Plugin 'scrooloose/syntastic'
   "requires ctags. used for generating 'goto' tags for project files
 Plugin 'majutsushi/tagbar'
 
-"All of your Plugins must be added before the following line
+"all of your Plugins must be added before the following line
 call vundle#end()
 
-"Put your non-Plugin stuff after this line
+"put your non-Plugin stuff after this line
 
 "trim trailing spaces
 function! TrimTrailingWhitespace()
@@ -274,21 +274,12 @@ catch
 endtry
 hi! link SignColumn LineNr
 
-"supertab
-" let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-" if has("gui_running")
-"   imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-" else
-"   if has("unix")
-"     inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-"   endif
-" endif
-
 "syntastic
-nnoremap <Leader>sr :SyntasticReset<CR>
-nnoremap <Leader>sn :lnext<CR>
-nnoremap <Leader>sp :lprev<CR>
-nnoremap <Leader>sc :lclose<CR>
+nnoremap <Leader>st :SyntasticToggleMode<cr>
+nnoremap <Leader>sr :SyntasticReset<cr>
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprev<cr>
+nnoremap <Leader>sc :lclose<cr>
 let g:syntastic_python_checkers = ["prospector"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
