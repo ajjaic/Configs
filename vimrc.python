@@ -31,7 +31,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
 Plugin 'Shougo/unite.vim'
@@ -74,8 +73,8 @@ if !exists("autocommands_loaded")
 endif
 
 if !has('nvim')
-    " Only set this for vim, since newovim is utf8 as default and setting it
-    " causes problems when reloading the .vimrc configuration
+    "only set this for vim, since newovim is utf8 as default and setting it
+    "causes problems when reloading the .vimrc configuration
     set encoding=utf8
 endif
 
@@ -201,6 +200,10 @@ nnoremap <leader>x :wa<cr>:q<cr>
 nnoremap j gj
 nnoremap k gk
 
+"navigate paragraphs
+nnoremap <C-j> }
+nnoremap <C-k> {
+
 "search highlighted text
 vnoremap / yq/p<cr>
 
@@ -287,5 +290,5 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
-" tagbar
+"tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>

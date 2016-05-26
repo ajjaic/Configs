@@ -9,7 +9,7 @@
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-" necessary for lots of cool vim things
+"necessary for lots of cool vim things
 set nocompatible
 filetype off
 filetype plugin off
@@ -20,7 +20,7 @@ let mapleader = "," " map leader
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
-"Keep Plugin commands between vundle#begin/end.
+"keep Plugin commands between vundle#begin/end.
 call vundle#begin()
 
 "let Vundle manage Vundle, required
@@ -31,22 +31,21 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
-  " Unite most recently used
+  "unite most recently used
 Plugin 'Shougo/neomru.vim'
-  " Unite yank history
+  "unite yank history
 Plugin 'Shougo/neoyank.vim'
-  " Unite command/search history
+  "unite command/search history
 Plugin 'thinca/vim-unite-history'
 
-"All of your Plugins must be added before the following line
+"all of your Plugins must be added before the following line
 call vundle#end()
 
-"Put your non-Plugin stuff after this line
+"put your non-Plugin stuff after this line
 
 "trim trailing spaces
 function! TrimTrailingWhitespace()
@@ -68,8 +67,8 @@ if !exists("autocommands_loaded")
 endif
 
 if !has('nvim')
-    " Only set this for vim, since newovim is utf8 as default and setting it
-    " causes problems when reloading the .vimrc configuration
+    "only set this for vim, since newovim is utf8 as default and setting it
+    "causes problems when reloading the .vimrc configuration
     set encoding=utf8
 endif
 
@@ -195,6 +194,10 @@ nnoremap <leader>x :wa<cr>:q<cr>
 nnoremap j gj
 nnoremap k gk
 
+"navigate paragraphs
+nnoremap <C-j> }
+nnoremap <C-k> {
+
 "search highlighted text
 vnoremap / yq/p<cr>
 
@@ -244,7 +247,7 @@ nnoremap <leader>ud :UniteWithBufferDir -start-insert file<cr>
 vnoremap <leader>ta :Tabularize/=<cr>
 
 "tpope commentary
-nnoremap <leader>cc :Commentary<cr>
+noremap <leader>cc :Commentary<cr>
 
 "airline
 let g:airline#extensions#tabline#enabled  = 1
@@ -267,13 +270,3 @@ try
 catch
 endtry
 hi! link SignColumn LineNr
-
-"supertab
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-if has("gui_running")
-  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-else
-  if has("unix")
-    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-  endif
-endif
