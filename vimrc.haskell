@@ -31,7 +31,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'ervandew/supertab'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
 Plugin 'Shougo/unite.vim'
@@ -53,6 +52,9 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
   "snippet library
 Plugin 'honza/vim-snippets'
+  "tab completion with <tab> key
+  "using neocomplete completion engine
+Plugin 'ervandew/supertab'
 
 
 "All of your Plugins must be added before the following line
@@ -259,7 +261,7 @@ nnoremap <leader>ud :UniteWithBufferDir -start-insert file<cr>
 vnoremap <leader>ta :Tabularize/=<cr>
 
 "tpope commentary
-nnoremap <leader>cc :Commentary<cr>
+noremap <leader>cc :Commentary<cr>
 
 "airline
 let g:airline#extensions#tabline#enabled  = 1
