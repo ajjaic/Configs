@@ -219,6 +219,9 @@ nnoremap <leader>fe zE
 nnoremap <leader>dc :hi! link Comment Ignore<cr>
 nnoremap <leader>ec :hi! link Comment Comment<cr>
 
+"'md' files are markdown files. not modula files
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 """"""""""""""""""""
 "  PLUGINS  CONFIG "
 """"""""""""""""""""
