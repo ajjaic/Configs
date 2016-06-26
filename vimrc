@@ -102,8 +102,8 @@ set virtualedit=block
 set nowrap
 
 "indent settings
-set shiftwidth=2 "no of spaces for autoindent
-set tabstop=2
+set shiftwidth=4 "no of spaces for autoindent
+set tabstop=4
 
 "expand tabs to spaces
 set expandtab
