@@ -285,6 +285,13 @@ endtry
 hi! link SignColumn LineNr
 
 "vim-racer
+"In insert mode use C-x-C-o to search for completions
+"In normal mode type gd to go to a definition
+"In normal mode type gs to splitted open a definition
+"In normal mode type gx to vsplitted open a definition
 let g:racer_cmd = "/home/devbox/.cargo/bin/racer"
 let $RUST_SRC_PATH = "/home/devbox/rustc-1.11.0/src"
 
+"rust-specific
+map <leader>rr ,w:!cargo run<cr>
+map <leader>rb ,w:!cargo build<cr>
