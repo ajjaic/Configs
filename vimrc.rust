@@ -33,6 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
+Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
   "unite most recently used
@@ -43,13 +44,18 @@ Plugin 'Shougo/neoyank.vim'
 Plugin 'thinca/vim-unite-history'
 
 "rust-lang specific
+Plugin 'vim-syntastic/syntastic'
+  "install rustfmt with `cargo install rustfmt`
+  "to use the RustFmt command that the following
+  "plugin provides
 Plugin 'rust-lang/rust.vim'
-    "the rust source is required for the following plugin
-    "to work. download the rust source for the installed
-    "version and point this env variable to the path of the
-    "source
-    "racer executable also required. It can be installed
-    "with `cargo install racer`
+  "install racer with `cargo install racer` to
+  "use it with the following plugin. Also,
+  "install the rust src for your toolchain with
+  "`rustup component add rust-src`. It is required
+  "for the following plugin to work. And finally
+  "export `RUST_SRC_PATH` to the src. Most likely
+  "in `~/.multirust/toolchains/[your-toolchain]/lib/rustlib/src/rust/src`
 Plugin 'racer-rust/vim-racer'
 
 "all of your Plugins must be added before the following line
@@ -270,7 +276,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_powerline_fonts = 1
-let g:airline_symbols.space = "\ua0"
+"let g:airline_symbols.space = "\ua0"
 
 "nerdTree
 nnoremap <leader>nn :NERDTreeToggle<cr>:wincmd =<cr>
@@ -284,14 +290,13 @@ catch
 endtry
 hi! link SignColumn LineNr
 
-"vim-racer
-"In insert mode use C-x-C-o to search for completions
-"In normal mode type gd to go to a definition
-"In normal mode type gs to splitted open a definition
-"In normal mode type gx to vsplitted open a definition
-let g:racer_cmd = "/home/devbox/.cargo/bin/racer"
-let $RUST_SRC_PATH = "/home/devbox/rustc-1.11.0/src"
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-"rust-specific
-map <leader>rr ,w:!cargo run<cr>
-map <leader>rb ,w:!cargo build<cr>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_rust_checkers = ['rustc']
