@@ -233,6 +233,7 @@ map f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
+let g:unite_source_grep_default_opts='-iRHn'
 nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
 nnoremap <leader>ul :Unite -start-insert line<cr>
