@@ -33,6 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
+Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
   "unite most recently used
@@ -165,7 +166,7 @@ set nowb
 set scrolloff=3
 
 "clipboard settings to enable yanking/pasting from/to vim or other programs
-set clipboard=unnamedplus,autoselect
+" set clipboard=unnamed,autoselect
 
 "indent and keep selection so that i can do it again
 vnoremap < <gv
@@ -231,10 +232,12 @@ nnoremap <leader>ec :hi! link Comment Comment<cr>
 
 "easyMotion
 let g:EasyMotion_do_mapping = 0
-map f <Plug>(easymotion-s)
+nnoremap f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
+let g:unite_source_grep_default_opts='-iRHn'
+call unite#custom#source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', '*.pyc\|.gitignore\|.prospector.yaml')
 nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
 nnoremap <leader>ul :Unite -start-insert line<cr>
@@ -265,6 +268,27 @@ endif
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.space = "\ua0"
 
+
+"airline
+let g:airline#extensions#tabline#enabled  = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#branch#enabled=1
+if !exists('g:airline_symbols')
+   let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
 "nerdTree
 nnoremap <leader>nn :NERDTreeToggle<cr>:wincmd =<cr>
 let g:NERDTreeIgnore = ['\.pyc$']
@@ -278,6 +302,9 @@ endtry
 hi! link SignColumn LineNr
 
 "syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 nnoremap <Leader>st :SyntasticToggleMode<cr>
 nnoremap <Leader>sr :SyntasticReset<cr>
 nnoremap <Leader>sn :lnext<cr>
