@@ -174,9 +174,6 @@ set nowb
 "minimal number of lines to keep above and below cursor
 set scrolloff=3
 
-"clipboard settings to enable yanking/pasting from/to vim or other programs
-set clipboard=unnamedplus,autoselect
-
 "indent and keep selection so that i can do it again
 vnoremap < <gv
 vnoremap > >gv
@@ -238,6 +235,18 @@ nnoremap <leader>ec :hi! link Comment Comment<cr>
 "'md' files are markdown files. not modula files
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
+"visually show when I enter and leave `insert` mode
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
+"clipboard settings to enable yanking/pasting from/to vim or other programs
+"seems to work only in win or linux
+"need to investigate further, cos it does not work
+" set clipboard=unnamedplus,autoselect
+
+"sets linespace between lines (in px.Works only in GUI version. gVim or MacVim)
+"set linespace=0
+
 """"""""""""""""""""
 "  PLUGINS  CONFIG "
 """"""""""""""""""""
@@ -292,6 +301,10 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 "nerdTree
 nnoremap <leader>nn :NERDTreeToggle<cr>:wincmd =<cr>
+nnoremap <silent><leader>nf :NERDTreeFind<cr>:wincmd =<cr>
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeChDirMode = 1
+let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['\.pyc$']
 hi Directory guifg=#8ac6f2
 
@@ -313,6 +326,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_rust_checkers = ['rustc']
 nnoremap <leader>sr :SyntasticReset<cr>
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprev<cr>
 
 "rust specific commands
 nnoremap <leader>r :!clear && cargo run<cr>
