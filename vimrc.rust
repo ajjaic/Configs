@@ -8,6 +8,9 @@
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" Set color of colorcolumn by adding the line <highlight ColorColumn ctermbg=0>
+" in your 'ftplugin/rust.vim' or 'ftplugin/<anylanguage>.vim' file
 
 "necessary for lots of cool vim things
 set nocompatible
@@ -239,6 +242,9 @@ au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
+"set max width of code
+set colorcolumn=81
+
 "clipboard settings to enable yanking/pasting from/to vim or other programs
 "seems to work only in win or linux
 "need to investigate further, cos it does not work
@@ -325,6 +331,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_rust_checkers = ['rustc']
+nnoremap <Leader>st :SyntasticToggleMode<cr>
 nnoremap <leader>sr :SyntasticReset<cr>
 nnoremap <Leader>sn :lnext<cr>
 nnoremap <Leader>sp :lprev<cr>
