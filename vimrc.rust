@@ -10,7 +10,7 @@
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " Set color of colorcolumn by adding the line <highlight ColorColumn ctermbg=0>
-" in your 'ftplugin/rust.vim' or 'ftplugin/<anylanguage>.vim' file
+" in your 'ftplugin/rust.vim'
 
 "necessary for lots of cool vim things
 set nocompatible
