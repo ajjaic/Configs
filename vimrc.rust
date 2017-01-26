@@ -228,7 +228,9 @@ nnoremap <leader>fa za
 nnoremap <leader>fm zM
   "expand all folds
 nnoremap <leader>fr zR
-  "delete fold
+ "delete specific fold
+nnoremap <leader>fd zd
+  "delete all fold
 nnoremap <leader>fe zE
 
 "dim and undim comments
