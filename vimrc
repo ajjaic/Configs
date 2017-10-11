@@ -33,6 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
+Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
   "unite most recently used
@@ -102,8 +103,8 @@ set virtualedit=block
 set nowrap
 
 "indent settings
-set shiftwidth=2 "no of spaces for autoindent
-set tabstop=2
+set shiftwidth=4 "no of spaces for autoindent
+set tabstop=4
 
 "expand tabs to spaces
 set expandtab
@@ -219,6 +220,9 @@ nnoremap <leader>fe zE
 nnoremap <leader>dc :hi! link Comment Ignore<cr>
 nnoremap <leader>ec :hi! link Comment Comment<cr>
 
+"'md' files are markdown files. not modula files
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 """"""""""""""""""""
 "  PLUGINS  CONFIG "
 """"""""""""""""""""
@@ -229,6 +233,7 @@ map f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
+let g:unite_source_grep_default_opts='-iRHn'
 nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
 nnoremap <leader>ul :Unite -start-insert line<cr>
@@ -256,8 +261,18 @@ let g:airline#extensions#branch#enabled=1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_powerline_fonts = 1
-let g:airline_symbols.space = "\ua0"
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 "nerdTree
 nnoremap <leader>nn :NERDTreeToggle<cr>:wincmd =<cr>

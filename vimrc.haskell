@@ -212,6 +212,10 @@ nnoremap <leader>x :wa<cr>:q<cr>
 nnoremap j gj
 nnoremap k gk
 
+"navigate paragraphs
+nnoremap <C-j> }
+nnoremap <C-k> {
+
 "search highlighted text
 vnoremap / yq/p<cr>
 
@@ -309,5 +313,6 @@ else
 endif
 
 "vim-snipmate
-imap <C-j> <Plug>snipMateNextOrTrigger
-imap <C-k> <Plug>snipMateShow
+imap <C-[> <Plug>snipMateNextOrTrigger
+imap <C-]> <Plug>snipMateShow
+

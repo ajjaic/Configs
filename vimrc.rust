@@ -8,6 +8,9 @@
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" Set color of colorcolumn by adding the line <highlight ColorColumn ctermbg=0>
+" in your 'ftplugin/rust.vim'
 
 "necessary for lots of cool vim things
 set nocompatible
@@ -43,11 +46,20 @@ Plugin 'Shougo/neoyank.vim'
   "unite command/search history
 Plugin 'thinca/vim-unite-history'
 
-"python specific plugins
-  "requires prospector for checking python syntax
-Plugin 'scrooloose/syntastic'
-  "requires ctags. used for generating 'goto' tags for project files
-Plugin 'majutsushi/tagbar'
+"rust-lang specific
+Plugin 'vim-syntastic/syntastic'
+  "install rustfmt with `cargo install rustfmt`
+  "to use the RustFmt command that the following
+  "plugin provides
+Plugin 'rust-lang/rust.vim'
+  "install racer with `cargo install racer` to
+  "use it with the following plugin. Also,
+  "install the rust src for your toolchain with
+  "`rustup component add rust-src`. It is required
+  "for the following plugin to work. And finally
+  "export `RUST_SRC_PATH` to the src. Most likely
+  "in `~/.multirust/toolchains/[your-toolchain]/lib/rustlib/src/rust/src`
+Plugin 'racer-rust/vim-racer'
 
 "all of your Plugins must be added before the following line
 call vundle#end()
@@ -109,8 +121,8 @@ set virtualedit=block
 set nowrap
 
 "indent settings
-set shiftwidth=2 "no of spaces for autoindent
-set tabstop=2
+set shiftwidth=4 "no of spaces for autoindent
+set tabstop=4
 
 "expand tabs to spaces
 set expandtab
@@ -232,6 +244,9 @@ au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
+"set max width of code
+set colorcolumn=81
+
 "clipboard settings to enable yanking/pasting from/to vim or other programs
 "seems to work only in win or linux
 "need to investigate further, cos it does not work
@@ -251,7 +266,7 @@ map f <Plug>(easymotion-s)
 "unite
 let g:unite_prompt = '>>'
 let g:unite_source_grep_default_opts='-iRHn'
-call unite#custom#source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', '*.pyc\|.gitignore\|.prospector.yaml')
+call unite#custom#source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', 'target/\|.gitignore\|Cargo.lock')
 nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
 nnoremap <leader>ul :Unite -start-insert line<cr>
@@ -277,7 +292,7 @@ let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#branch#enabled=1
 if !exists('g:airline_symbols')
-   let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -312,17 +327,16 @@ hi! link SignColumn LineNr
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-nnoremap <Leader>st :SyntasticToggleMode<cr>
-nnoremap <Leader>sr :SyntasticReset<cr>
-nnoremap <Leader>sn :lnext<cr>
-nnoremap <Leader>sp :lprev<cr>
-nnoremap <Leader>sc :lclose<cr>
-let g:syntastic_python_checkers = ["prospector"]
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
+let g:syntastic_rust_checkers = ['rustc']
+nnoremap <Leader>st :SyntasticToggleMode<cr>
+nnoremap <leader>sr :SyntasticReset<cr>
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprev<cr>
 
-"tagbar
-nnoremap <Leader>tt :TagbarToggle<CR>
+"rust specific commands
+nnoremap <leader>r :!clear && cargo run<cr>
