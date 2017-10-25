@@ -27,21 +27,29 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
-Plugin 'yonchu/accelerated-smooth-scroll'
+" Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
+  "unite replacement?
+Plugin 'Shougo/denite.nvim'
   "unite most recently used
 Plugin 'Shougo/neomru.vim'
   "unite yank history
 Plugin 'Shougo/neoyank.vim'
   "unite command/search history
 Plugin 'thinca/vim-unite-history'
+
+
+"python specific plugins
+  "requires prospector for checking python syntax
+Plugin 'scrooloose/syntastic'
+  "requires ctags. used for generating 'goto' tags for project files
+Plugin 'majutsushi/tagbar'
 
 "all of your Plugins must be added before the following line
 call vundle#end()
@@ -103,8 +111,8 @@ set virtualedit=block
 set nowrap
 
 "indent settings
-set shiftwidth=4 "no of spaces for autoindent
-set tabstop=4
+set shiftwidth=2 "no of spaces for autoindent
+set tabstop=2
 
 "expand tabs to spaces
 set expandtab
@@ -157,10 +165,7 @@ set noswapfile
 set nowb
 
 "minimal number of lines to keep above and below cursor
-set scrolloff=3
-
-"clipboard settings to enable yanking/pasting from/to vim or other programs
-set clipboard=unnamedplus,autoselect
+set scrolloff=5
 
 "indent and keep selection so that i can do it again
 vnoremap < <gv
@@ -178,9 +183,6 @@ nnoremap <leader>, :noh<cr>
 "buffer settings
 nnoremap <C-l> :bn<cr>
 nnoremap <C-h> :bp<cr>
-
-"close every window in current tabview but the current
-nnoremap <leader>bo <c-w>o
 
 "save file
 nnoremap <leader>w :w<cr>
@@ -202,6 +204,13 @@ nnoremap <C-k> {
 "search highlighted text
 vnoremap / yq/p<cr>
 
+"partial command filter on command history
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+
+"vim should not behave differently depending on the first few lines of a file
+set nomodeline
+
 "folding config
 set foldmethod=marker
 set foldcolumn=3
@@ -213,7 +222,9 @@ nnoremap <leader>fa za
 nnoremap <leader>fm zM
   "expand all folds
 nnoremap <leader>fr zR
-  "delete fold
+  "delete specific fold
+nnoremap <leader>fd zd
+  "delete all folds
 nnoremap <leader>fe zE
 
 "dim and undim comments
@@ -223,21 +234,42 @@ nnoremap <leader>ec :hi! link Comment Comment<cr>
 "'md' files are markdown files. not modula files
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
+"visually show when I enter and leave `insert` mode
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
+"set column limit to 80
+set colorcolumn=121
+highlight ColorColumn ctermbg=0
+
+"clipboard settings to enable yanking/pasting from/to vim or other programs
+"seems to work only in win or linux
+"need to investigate further, cos it does not work
+" set clipboard=unnamedplus,autoselect
+
+"sets linespace between lines (in px.Works only in GUI version. gVim or MacVim)
+"set linespace=0
+
 """"""""""""""""""""
 "  PLUGINS  CONFIG "
 """"""""""""""""""""
 
 "easyMotion
 let g:EasyMotion_do_mapping = 0
+hi link EasyMotionTarget2First EasyMotionTarget
 map f <Plug>(easymotion-s)
 
 "unite
 let g:unite_prompt = '>>'
-let g:unite_source_grep_default_opts='-iRHn'
-nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
+" let g:unite_source_grep_default_opts='-iIRHn'
+" let g:unite_source_grep_max_candidates = 200
+" let g:unite_source_rec_async_command = [ 'ag', '-l', '-g', '', '--nocolor' ]
+" call unite#custom#source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', '*.pyc\|.gitignore\|.prospector.yaml\|.git/|./them.*/*|*.sql|./testing/*')
+
+" nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
-nnoremap <leader>ul :Unite -start-insert line<cr>
-nnoremap <leader>uc :Unite -start-insert history/command<cr>
+" nnoremap <leader>ul :Unite -start-insert line<cr>
+" nnoremap <leader>uc :Unite -start-insert history/command<cr>
 nnoremap <leader>uy :Unite history/yank<cr>
 nnoremap <leader>um :Unite -start-insert file_mru<cr>
 nnoremap <leader>us :Unite history/search<cr>
@@ -245,8 +277,22 @@ nnoremap <leader>up :Unite grep:./*<cr>
 nnoremap <leader>ug :UniteWithCursorWord grep:./*<cr>
 nnoremap <leader>ub :Unite grep:$buffers<cr>
 nnoremap <leader>uw :UniteWithCursorWord grep:$buffers<cr>
-nnoremap <leader>uf :UniteWithCursorWord file_rec/async<cr>
-nnoremap <leader>ud :UniteWithBufferDir -start-insert file<cr>
+" nnoremap <leader>uf :UniteWithCursorWord file_rec/async<cr>
+" nnoremap <leader>ud :UniteWithBufferDir -start-insert file<cr>
+
+"denite
+call denite#custom#map('insert', ':q', '<denite:quit>', 'noremap')
+call denite#custom#map('insert', 'jk', '<denite:enter_mode:normal>', 'noremap')
+
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#option('default', { 'prompt': '❯❯' })
+
+nnoremap <leader>ul :Denite -direction=dynamictop line<cr>
+nnoremap <leader>ut :DeniteProjectDir -direction=dynamictop file_rec<cr>
+nnoremap <leader>uc :Denite -direction=dynamictop command_history<cr>
+nnoremap <leader>uf :DeniteCursorWord -direction=dynamictop file_rec<cr>
+nnoremap <leader>ud :DeniteBufferDir -direction=dynamictop file<cr>
 
 "tabularize
 vnoremap <leader>ta :Tabularize/=<cr>
@@ -259,7 +305,7 @@ let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#branch#enabled=1
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+   let g:airline_symbols = {}
 endif
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -274,14 +320,28 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-"nerdTree
-nnoremap <leader>nn :NERDTreeToggle<cr>:wincmd =<cr>
-let g:NERDTreeIgnore = ['\.pyc$']
-hi Directory guifg=#8ac6f2
-
 "colorscheme
 try
     colorscheme wombat256mod
 catch
 endtry
 hi! link SignColumn LineNr
+
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+nnoremap <Leader>st :SyntasticToggleMode<cr>
+nnoremap <Leader>sr :SyntasticReset<cr>
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprev<cr>
+nnoremap <Leader>sc :lclose<cr>
+let g:syntastic_python_checkers = ["prospector"]
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+
+"tagbar
+nnoremap <Leader>tt :TagbarToggle<CR>
