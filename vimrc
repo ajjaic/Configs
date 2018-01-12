@@ -183,6 +183,7 @@ nnoremap <leader>, :noh<cr>
 "buffer settings
 nnoremap <C-l> :bn<cr>
 nnoremap <C-h> :bp<cr>
+nnoremap <Tab> :b#<cr>
 
 "save file
 nnoremap <leader>w :w<cr>
