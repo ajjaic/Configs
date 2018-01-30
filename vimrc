@@ -39,6 +39,8 @@ Plugin 'vim-scripts/wombat256.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
 
   "following 2 plugins are dependencies for deoplete
 Plugin 'roxma/nvim-yarp'
@@ -57,8 +59,6 @@ Plugin 'thinca/vim-unite-history'
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'sebastianmarkow/deoplete-rust'
-Plugin 'scrooloose/syntastic'
-Plugin 'majutsushi/tagbar'
 
 "all of your Plugins must be added before the following line
 call vundle#end()
@@ -330,13 +330,15 @@ nnoremap <Leader>sr :SyntasticReset<cr>
 nnoremap <Leader>sn :lnext<cr>
 nnoremap <Leader>sp :lprev<cr>
 nnoremap <Leader>sc :lclose<cr>
-let g:syntastic_python_checkers = ["prospector"]
-let g:syntastic_rust_checkers = ["rustc"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
+  "python specific
+let g:syntastic_python_checkers = ["prospector"]
+  "rust specific
+let g:syntastic_rust_checkers = ["rustc"]
 
 "tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>
@@ -357,12 +359,12 @@ let g:tagbar_type_rust = {
 
 "deoplete.nvim
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_menu_width=150
   "rust specific completions
 let g:deoplete#sources#rust#racer_binary='/home/adas/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/adas/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#show_duplicates=0
 let g:deoplete#sources#rust#disable_keymap=1
-let g:deoplete#max_menu_width=150
 
 "rust specific commands
 nnoremap <leader>rr :!clear && cargo run<cr>
