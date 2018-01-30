@@ -2,6 +2,10 @@
 " Run :PluginUpdate
 " goto ~/.vim/bundles/vimproc.vim
 " Run make
+" sudo apt install silversearcher-ag (required for denite)
+" sudo apt install ctags (required by tagbar)
+" sudo apt install python3-pip (dependency for nvim-yarp)
+" pip install neovim (dependency for nvim-yarp)
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -34,6 +38,12 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/deoplete.nvim'
+
+  "following 2 plugins are dependencies for deoplete
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+
   "unite replacement?
 Plugin 'Shougo/denite.nvim'
   "unite most recently used
@@ -43,11 +53,11 @@ Plugin 'Shougo/neoyank.vim'
   "unite command/search history
 Plugin 'thinca/vim-unite-history'
 
-
-"python specific plugins
-  "requires prospector for checking python syntax
+"rust specific
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+Plugin 'sebastianmarkow/deoplete-rust'
 Plugin 'scrooloose/syntastic'
-  "requires ctags. used for generating 'goto' tags for project files
 Plugin 'majutsushi/tagbar'
 
 "all of your Plugins must be added before the following line
@@ -262,28 +272,16 @@ hi link EasyMotionTarget2First EasyMotionTarget
 map f <Plug>(easymotion-s)
 
 "unite
-let g:unite_prompt = '>>'
-" let g:unite_source_grep_default_opts='-iIRHn'
-" let g:unite_source_grep_max_candidates = 200
-" let g:unite_source_rec_async_command = [ 'ag', '-l', '-g', '', '--nocolor' ]
 " call unite#custom#source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', '*.pyc\|.gitignore\|.prospector.yaml\|.git/|./them.*/*|*.sql|./testing/*')
-
-" nnoremap <leader>ut :Unite -start-insert file_rec/async<cr>
 nnoremap <leader>uv :Unite -start-insert buffer<cr>
-" nnoremap <leader>ul :Unite -start-insert line<cr>
-" nnoremap <leader>uc :Unite -start-insert history/command<cr>
 nnoremap <leader>uy :Unite history/yank<cr>
 nnoremap <leader>um :Unite -start-insert file_mru<cr>
 nnoremap <leader>us :Unite history/search<cr>
-" nnoremap <leader>up :Unite grep:./*<cr>
-" nnoremap <leader>ug :UniteWithCursorWord grep:./*<cr>
 nnoremap <leader>ub :Unite grep:$buffers<cr>
 nnoremap <leader>uw :UniteWithCursorWord grep:$buffers<cr>
-" nnoremap <leader>uf :UniteWithCursorWord file_rec/async<cr>
-" nnoremap <leader>ud :UniteWithBufferDir -start-insert file<cr>
 
 "denite
-call denite#custom#map('insert', ':q', '<denite:quit>', 'noremap')
+" call denite#custom#map('insert', ':q', '<denite:quit>', 'noremap')
 call denite#custom#map('insert', 'jk', '<denite:enter_mode:normal>', 'noremap')
 call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 call denite#custom#var('grep', 'command', ['ag'])
@@ -310,21 +308,6 @@ noremap <leader>cc :Commentary<cr>
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#branch#enabled=1
-" if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-" endif
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.whitespace = 'Ξ'
 
 "colorscheme
 try
@@ -343,6 +326,7 @@ nnoremap <Leader>sn :lnext<cr>
 nnoremap <Leader>sp :lprev<cr>
 nnoremap <Leader>sc :lclose<cr>
 let g:syntastic_python_checkers = ["prospector"]
+let g:syntastic_rust_checkers = ["rustc"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -351,3 +335,29 @@ let g:syntastic_aggregate_errors = 1
 
 "tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>
+  "rust specific
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+
+"deoplete.nvim
+let g:deoplete#enable_at_startup = 1
+  "rust specific completions
+let g:deoplete#sources#rust#racer_binary='/home/adas/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/adas/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
+let g:deoplete#sources#rust#disable_keymap=1
+
+"rust specific commands
+nnoremap <leader>rr :!clear && cargo run<cr>
+nnoremap <leader>rf :RustFmt<cr>
