@@ -32,7 +32,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/wombat256.vim'
-" Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
   "unite replacement?
@@ -99,6 +98,9 @@ set t_Co=256
 
 "set unix as standard file type
 set ffs=unix,dos,mac
+
+"don't bing when I fuck up
+set noerrorbells
 
 "relative line numbers
 set nu
@@ -183,15 +185,14 @@ nnoremap <leader>, :noh<cr>
 "buffer settings
 nnoremap <C-l> :bn<cr>
 nnoremap <C-h> :bp<cr>
+  "jump to previously visited buffer
 nnoremap <Tab> :b#<cr>
 
-"save file
+"saving
 nnoremap <leader>w :w<cr>
-
-"save all files
+  "save all files
 nnoremap <leader>l :wa<cr>
-
-"save all and quit
+  "save all and quit
 nnoremap <leader>x :wa<cr>:q<cr>
 
 "navigate display lines
@@ -274,8 +275,8 @@ nnoremap <leader>uv :Unite -start-insert buffer<cr>
 nnoremap <leader>uy :Unite history/yank<cr>
 nnoremap <leader>um :Unite -start-insert file_mru<cr>
 nnoremap <leader>us :Unite history/search<cr>
-nnoremap <leader>up :Unite grep:./*<cr>
-nnoremap <leader>ug :UniteWithCursorWord grep:./*<cr>
+" nnoremap <leader>up :Unite grep:./*<cr>
+" nnoremap <leader>ug :UniteWithCursorWord grep:./*<cr>
 nnoremap <leader>ub :Unite grep:$buffers<cr>
 nnoremap <leader>uw :UniteWithCursorWord grep:$buffers<cr>
 " nnoremap <leader>uf :UniteWithCursorWord file_rec/async<cr>
@@ -284,16 +285,20 @@ nnoremap <leader>uw :UniteWithCursorWord grep:$buffers<cr>
 "denite
 call denite#custom#map('insert', ':q', '<denite:quit>', 'noremap')
 call denite#custom#map('insert', 'jk', '<denite:enter_mode:normal>', 'noremap')
-
 call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-call denite#custom#option('default', { 'prompt': '❯❯' })
-
-nnoremap <leader>ul :Denite -direction=dynamictop line<cr>
-nnoremap <leader>ut :DeniteProjectDir -direction=dynamictop file_rec<cr>
-nnoremap <leader>uc :Denite -direction=dynamictop command_history<cr>
-nnoremap <leader>uf :DeniteCursorWord -direction=dynamictop file_rec<cr>
-nnoremap <leader>ud :DeniteBufferDir -direction=dynamictop file<cr>
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+nnoremap <leader>ul :Denite line<cr>
+nnoremap <leader>uc :Denite command_history<cr>
+nnoremap <leader>up :Denite grep:.<cr>
+nnoremap <leader>ut :DeniteProjectDir file_rec<cr>
+nnoremap <leader>ud :DeniteBufferDir file<cr>
+nnoremap <leader>ug :DeniteCursorWord grep:. -mode=normal<cr>
+nnoremap <leader>uf :DeniteCursorWord file_rec -mode=normal<cr>
 
 "tabularize
 vnoremap <leader>ta :Tabularize/=<cr>
@@ -305,21 +310,21 @@ noremap <leader>cc :Commentary<cr>
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#branch#enabled=1
-if !exists('g:airline_symbols')
-   let g:airline_symbols = {}
-endif
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+" if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+" endif
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.whitespace = 'Ξ'
 
 "colorscheme
 try
