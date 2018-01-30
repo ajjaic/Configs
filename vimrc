@@ -204,6 +204,8 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>l :wa<cr>
   "save all and quit
 nnoremap <leader>x :wa<cr>:q<cr>
+  "quit without saving
+nnoremap <leader>q :q!<cr>
 
 "navigate display lines
 nnoremap j gj
@@ -253,6 +255,9 @@ autocmd InsertLeave * set nocul
 "set column limit to 80
 set colorcolumn=121
 highlight ColorColumn ctermbg=0
+
+"disable a preview window from opening up during autocompletion. happens with deoplete
+set completeopt-=preview
 
 "clipboard settings to enable yanking/pasting from/to vim or other programs
 "seems to work only in win or linux
@@ -355,8 +360,9 @@ let g:deoplete#enable_at_startup = 1
   "rust specific completions
 let g:deoplete#sources#rust#racer_binary='/home/adas/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/adas/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-let g:deoplete#sources#rust#show_duplicates=1
+let g:deoplete#sources#rust#show_duplicates=0
 let g:deoplete#sources#rust#disable_keymap=1
+let g:deoplete#max_menu_width=150
 
 "rust specific commands
 nnoremap <leader>rr :!clear && cargo run<cr>
