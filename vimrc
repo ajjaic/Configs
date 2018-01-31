@@ -56,6 +56,19 @@ Plugin 'Shougo/neoyank.vim'
 Plugin 'thinca/vim-unite-history'
 
 "rust specific
+  "cargo install racer
+  "place the following in ~/.ctags
+    "--langdef=Rust
+    "--langmap=Rust:.rs
+    "--regex-Rust=/^[ \t]*(#\[[^\]]\][ \t]*)*(pub[ \t]+)?(extern[ \t]+)?("[^"]+"[ \t]+)?(unsafe[ \t]+)?fn[ \t]+([a-zA-Z0-9_]+)/\6/f,functions,function definitions/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?type[ \t]+([a-zA-Z0-9_]+)/\2/T,types,type definitions/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?enum[ \t]+([a-zA-Z0-9_]+)/\2/g,enum,enumeration names/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?struct[ \t]+([a-zA-Z0-9_]+)/\2/s,structure names/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?mod[ \t]+([a-zA-Z0-9_]+)/\2/m,modules,module names/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?(static|const)[ \t]+(mut[ \t]+)?([a-zA-Z0-9_]+)/\4/c,consts,static constants/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?(unsafe[ \t]+)?trait[ \t]+([a-zA-Z0-9_]+)/\3/t,traits,traits/
+    "--regex-Rust=/^[ \t]*(pub[ \t]+)?(unsafe[ \t]+)?impl([ \t\n]*<[^>]*>)?[ \t]+(([a-zA-Z0-9_:]+)[ \t]*(<[^>]*>)?[ \t]+(for)[ \t]+)?([a-zA-Z0-9_]+)/\5 \7 \8/i,impls,trait implementations/
+    "--regex-Rust=/^[ \t]*macro_rules![ \t]+([a-zA-Z0-9_]+)/\1/d,macros,macro definitions/
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'sebastianmarkow/deoplete-rust'
@@ -361,8 +374,8 @@ let g:tagbar_type_rust = {
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width=150
   "rust specific completions
-let g:deoplete#sources#rust#racer_binary='/home/adas/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/adas/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#racer_binary='/Users/aj.chandra/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/Users/aj.chandra/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#show_duplicates=0
 let g:deoplete#sources#rust#disable_keymap=1
 
