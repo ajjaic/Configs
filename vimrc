@@ -374,9 +374,9 @@ let g:tagbar_type_rust = {
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width=150
   "rust specific completions
-let g:deoplete#sources#rust#racer_binary='/Users/aj.chandra/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/Users/aj.chandra/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
-let g:deoplete#sources#rust#show_duplicates=0
+let g:deoplete#sources#rust#racer_binary='/home/adas/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/adas/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
 let g:deoplete#sources#rust#disable_keymap=1
 
 "rust specific commands
