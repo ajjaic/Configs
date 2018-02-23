@@ -41,6 +41,8 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
   "following 2 plugins are dependencies for deoplete
 Plugin 'roxma/nvim-yarp'
@@ -153,7 +155,7 @@ set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 "dont continue comments when pushing o/O
-set formatoptions-=o
+au FileType * set fo-=c fo-=o
 
 "enable mouse support in console
 set mouse=a
@@ -378,6 +380,13 @@ let g:deoplete#sources#rust#racer_binary='/home/adas/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/adas/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#show_duplicates=1
 let g:deoplete#sources#rust#disable_keymap=1
+
+"ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+nnoremap  <leader>es :e ~/.vim/bundle/vim-snippets/snippets/rust.snippets<cr>
 
 "rust specific commands
 nnoremap <leader>rr :!clear && cargo run<cr>
