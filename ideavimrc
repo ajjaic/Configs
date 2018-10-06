@@ -1,0 +1,8 @@
+"make use of vims surround functionality
+set surround
+
+"remap jk to escape from insert mode
+inoremap jk <Esc>
+
+"KJump plugin
+nmap f :action KJumpAction<cr>
