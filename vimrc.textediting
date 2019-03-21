@@ -32,6 +32,10 @@ set nobackup
 set noswapfile
 set nowb
 
+"navigate display lines
+nnoremap j gj
+nnoremap k gk
+
 "easymotion settings
 let g:EasyMotion_do_mapping = 0
 map f <Plug>(easymotion-s)
