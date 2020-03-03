@@ -4,5 +4,12 @@ set surround
 "remap jk to escape from insert mode
 inoremap jk <Esc>
 
+"navigate display lines
+nnoremap j gj
+nnoremap k gk
+
 "KJump plugin
 nmap f :action KJumpAction<cr>
+
+"IdeaVim specific joining modes
+set ideajoin
