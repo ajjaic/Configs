@@ -13,3 +13,6 @@ nmap f :action KJumpAction<cr>
 
 "IdeaVim specific joining modes
 set ideajoin
+
+"yank to system clipboard
+vnoremap y "*y
