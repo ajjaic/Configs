@@ -1,4 +1,6 @@
 "       VIM
+let mapleader = ","
+
 "remap jk to escape from insert mode
 inoremap jk <Esc>
 
@@ -17,6 +19,9 @@ set smartcase
 
 "highlight search words
 set hlsearch
+
+"turn off highlights
+noremap <leader>, :noh<CR>
 
 "incremental searching
 set incsearch
