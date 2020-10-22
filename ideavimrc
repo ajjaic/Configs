@@ -1,6 +1,4 @@
-"make use of vims surround functionality
-set surround
-
+"       VIM
 "remap jk to escape from insert mode
 inoremap jk <Esc>
 
@@ -8,11 +6,35 @@ inoremap jk <Esc>
 nnoremap j gj
 nnoremap k gk
 
+"Copy to OS clipboard
+vnoremap y "*y
+
+"case insenstive while searching
+set ignorecase
+
+"case sensitive if search pattern contains uppercase characters
+set smartcase
+
+"highlight search words
+set hlsearch
+
+"incremental searching
+set incsearch
+
+"minimal number of lines to keep above and below cursor
+set scrolloff=8
+
+"indent and keep selection so that i can do it again
+vnoremap < <gv
+vnoremap > >gv
+
+
+"       INTELLIJ
 "KJump plugin
-nmap f :action KJumpAction<cr>
+nnoremap f :action KJumpAction<cr>
+
+"make use of vims surround functionality
+set surround
 
 "IdeaVim specific joining modes
 set ideajoin
-
-"yank to system clipboard
-vnoremap y "*y
