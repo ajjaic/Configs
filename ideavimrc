@@ -33,6 +33,10 @@ set scrolloff=8
 vnoremap < <gv
 vnoremap > >gv
 
+"move to next and previous tab in editor
+map <C-h> :action PreviousTab<CR>
+map <C-l> :action NextTab<CR>
+
 
 "       INTELLIJ
 "KJump plugin
@@ -43,3 +47,4 @@ set surround
 
 "IdeaVim specific joining modes
 set ideajoin
+set ideastatusicon=gray
