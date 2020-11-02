@@ -33,9 +33,8 @@ set scrolloff=8
 vnoremap < <gv
 vnoremap > >gv
 
-"move to next and previous tab in editor
-map <C-h> :action PreviousTab<CR>
-map <C-l> :action NextTab<CR>
+
+" ##############################################
 
 
 "       INTELLIJ
@@ -48,3 +47,14 @@ set surround
 "IdeaVim specific joining modes
 set ideajoin
 set ideastatusicon=gray
+
+"copy reference to symbol
+nnoremap yr :action CopyReference<CR>
+
+"move to next and previous tab in editor
+noremap <C-h> :action PreviousTab<CR>
+noremap <C-l> :action NextTab<CR>
+
+"move tab to the left or to the right
+noremap <C-S-l> :action com.mnw.tabmover.actions.MoveTabDownAction<CR>
+noremap <C-S-h> :action com.mnw.tabmover.actions.MoveTabUpAction<CR>
