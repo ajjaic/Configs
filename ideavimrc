@@ -23,8 +23,8 @@ set hlsearch
 "turn off highlights
 noremap <leader>, :noh<CR>
 
-"incremental searching
-set incsearch
+"incremental searching (NOT USED)
+" set incsearch
 
 "minimal number of lines to keep above and below cursor
 set scrolloff=8
@@ -33,6 +33,8 @@ set scrolloff=8
 vnoremap < <gv
 vnoremap > >gv
 
+"search for selected text
+vnoremap // y/<C-R>"<CR>
 
 " ##############################################
 
