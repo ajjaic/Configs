@@ -20,6 +20,14 @@
         {
             "before": ["f"],
             "after": ["leader", "leader", "s"]
+        },
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
         }
     ],
     "vim.visualModeKeyBindings": [
@@ -30,11 +38,13 @@
         {
             "before": ["<"],
             "commands": ["editor.action.outdentLines"]
-        }
+        },
     ],
     "editor.occurrencesHighlight": false,
     "editor.renderIndentGuides": false,
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.tabCloseButton": "off",
-    "editor.renderLineHighlight": "gutter"
+    "editor.renderLineHighlight": "gutter",
+    "window.zoomLevel": 0,
+    "editor.detectIndentation": false
 }
