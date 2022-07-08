@@ -23,7 +23,7 @@ set hlsearch
 "turn off highlights
 noremap <leader>, :noh<CR>
 
-"incremental searching (NOT USED)
+"incremental searching
 " set incsearch
 
 "minimal number of lines to keep above and below cursor
@@ -33,29 +33,30 @@ set scrolloff=8
 vnoremap < <gv
 vnoremap > >gv
 
+"move to next and previous tab in editor
+map <C-h> :action PreviousTab<CR>
+map <C-l> :action NextTab<CR>
+
+"move to next and previous splitter
+map <C-.> :action NextSplitter<CR>
+
 "search for selected text
-vnoremap // y/<C-R>"<CR>
-
-" ##############################################
-
-
-"       INTELLIJ
-"KJump plugin
-nnoremap f :action KJumpAction<cr>
-
-"make use of vims surround functionality
-set surround
-
-"IdeaVim specific joining modes
-set ideajoin
-set ideastatusicon=gray
+vnoremap / y/<C-R>"<CR>
 
 "copy reference to symbol
 nnoremap yr :action CopyReference<CR>
 
-"move to next and previous tab in editor
-noremap <C-h> :action PreviousTab<CR>
-noremap <C-l> :action NextTab<CR>
+"IdeaVim specific joining modes
+set ideajoin
+
+"make use of vims surround functionality
+set surround
+
+
+"       INTELLIJ SPECIFIC. INSTALL KJump and TabMover Plugin
+
+"KJump plugin
+nnoremap f :action KJumpAction<cr>
 
 "move tab to the left or to the right
 noremap <C-S-l> :action com.mnw.tabmover.actions.MoveTabDownAction<CR>
