@@ -7,5 +7,44 @@
     {
         "key": "ctrl+h",
         "command": "workbench.action.previousEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command": "workbench.action.moveEditorLeftInGroup"
+    },
+    {
+        "key": "cmd+k shift+cmd+right",
+        "command": "-workbench.action.moveEditorRightInGroup"
+    },
+    {
+        "key": "cmd+k shift+cmd+left",
+        "command": "-workbench.action.moveEditorLeftInGroup"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.moveEditorRightInGroup"
+    },
+    {
+        "key": "ctrl+.",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+,",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "cmd+k",
+        "command": "-workbench.action.terminal.clear",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "cmd+k",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
     }
 ]
