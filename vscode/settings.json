@@ -29,6 +29,10 @@
         {
             "before": ["k"],
             "after": ["g", "k"]
+        },
+        {
+            "before": ["<leader>", "d"],
+            "commands": ["editor.action.revealDefinition"]
         }
     ],
     "vim.visualModeKeyBindings": [
