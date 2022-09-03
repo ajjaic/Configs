@@ -5,20 +5,16 @@
         "command": "workbench.action.nextEditorInGroup"
     },
     {
+        "key": "ctrl+w",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorTextFocus"
+    },{
         "key": "ctrl+h",
         "command": "workbench.action.previousEditorInGroup"
     },
     {
         "key": "ctrl+shift+h",
         "command": "workbench.action.moveEditorLeftInGroup"
-    },
-    {
-        "key": "cmd+k shift+cmd+right",
-        "command": "-workbench.action.moveEditorRightInGroup"
-    },
-    {
-        "key": "cmd+k shift+cmd+left",
-        "command": "-workbench.action.moveEditorLeftInGroup"
     },
     {
         "key": "ctrl+shift+l",
@@ -33,18 +29,21 @@
         "command": "workbench.action.focusPreviousGroup"
     },
     {
-        "key": "cmd+k",
-        "command": "-workbench.action.terminal.clear",
-        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
     },
     {
-        "key": "cmd+k",
-        "command": "workbench.action.terminal.toggleTerminal",
-        "when": "terminal.active"
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
     },
     {
-        "key": "ctrl+`",
-        "command": "-workbench.action.terminal.toggleTerminal",
-        "when": "terminal.active"
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
     }
 ]
