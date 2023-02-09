@@ -1,8 +1,6 @@
 {
-    "extensions.autoUpdate": false,
+    "telemetry.telemetryLevel": "off",
     "workbench.enableExperiments": false,
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
     "vim.hlsearch": true,
     "vim.leader": ",",
     "vim.useSystemClipboard": true,
@@ -29,10 +27,6 @@
         {
             "before": ["k"],
             "after": ["g", "k"]
-        },
-        {
-            "before": ["<leader>", "d"],
-            "commands": ["editor.action.revealDefinition"]
         }
     ],
     "vim.visualModeKeyBindings": [
@@ -46,10 +40,24 @@
         },
     ],
     "editor.occurrencesHighlight": false,
-    "editor.renderIndentGuides": false,
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.tabCloseButton": "off",
     "editor.renderLineHighlight": "gutter",
-    "window.zoomLevel": 0,
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/.gitignore": true,
+        "**/.vscode": true
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.renderWhitespace": "boundary",
+    "git.confirmSync": false,
+    "workbench.editor.wrapTabs": true,
+    "breadcrumbs.enabled": false,
+    "editor.inlayHints.enabled": "on",
+    "debug.allowBreakpointsEverywhere": true,
+    "workbench.colorTheme": "Solarized Light",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.inlineSuggest.enabled": true
 }
