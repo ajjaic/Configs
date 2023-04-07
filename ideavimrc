@@ -1,4 +1,4 @@
-"       VIM
+" VIM SPECIFIC
 let mapleader = ","
 
 "remap jk to escape from insert mode
@@ -8,7 +8,7 @@ inoremap jk <Esc>
 nnoremap j gj
 nnoremap k gk
 
-"Copy to OS clipboard
+"copy to OS clipboard
 vnoremap y "*y
 
 "case insenstive while searching
@@ -33,31 +33,39 @@ set scrolloff=8
 vnoremap < <gv
 vnoremap > >gv
 
-"move to next and previous tab in editor
-map <C-h> :action PreviousTab<CR>
-map <C-l> :action NextTab<CR>
-
-"move to next and previous splitter
-map <C-.> :action NextSplitter<CR>
-
 "search for selected text
 vnoremap / y/<C-R>"<CR>
 
-"copy reference to symbol
-nnoremap yr :action CopyReference<CR>
+" show mode and command
+set showmode
+set showcmd
 
-"IdeaVim specific joining modes
+" IDEAVIM SPECIFIC
 set ideajoin
-
-"make use of vims surround functionality
 set surround
 
+" ideavim easymotion plugin required
+set easymotion 
+let g:EasyMotion_do_mapping = 0
+map f <Plug>(easymotion-s)
 
-"       INTELLIJ SPECIFIC. INSTALL KJump and TabMover Plugin
+set highlightedyank
 
-"KJump plugin
-nnoremap f :action KJumpAction<cr>
+" to know other actions supported by ideavim use :actionlist
+" move to next and previous tab in editor
+map <C-h> :action PreviousTab<CR>
+map <C-l> :action NextTab<CR>
 
-"move tab to the left or to the right
+" move to next and previous splitter
+map <C-.> :action NextSplitter<CR>
+
+" copy reference to symbol
+nnoremap yr :action CopyReference<CR>
+
+" Jump between methods
+nnoremap <C-b> :action MethodUp<CR>
+nnoremap <C-f> :action MethodDown<CR>
+
+"move tab to the left or to the right. tabmover plugin required
 noremap <C-S-l> :action com.mnw.tabmover.actions.MoveTabDownAction<CR>
 noremap <C-S-h> :action com.mnw.tabmover.actions.MoveTabUpAction<CR>

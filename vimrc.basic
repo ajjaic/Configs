@@ -1,0 +1,25 @@
+"necessary for lots of cool vim things
+set nocompatible
+filetype off
+filetype plugin off
+filetype plugin indent off
+
+"remap jk to escape from insert mode.
+inoremap jk <Esc>
+
+"length of tabstop
+set tabstop=4
+
+"expand tabs to spaces
+set expandtab
+
+"do we need backups
+set nobackup
+
+"we do not need any swapfile and no writeback
+set noswapfile
+set nowb
+
+"navigate display lines
+nnoremap j gj
+nnoremap k gk
