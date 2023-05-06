@@ -9,6 +9,7 @@ inoremap jk <Esc>
 
 "length of tabstop
 set tabstop=4
+set shiftwidth=4
 
 "expand tabs to spaces
 set expandtab
