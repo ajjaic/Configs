@@ -24,3 +24,11 @@ set nowb
 "navigate display lines
 nnoremap j gj
 nnoremap k gk
+
+" copy to vim clipboard
+set clipboard=unnamed
+
+"indent and keep selection so that i can do it again
+vnoremap < <gv
+vnoremap > >gv
+
